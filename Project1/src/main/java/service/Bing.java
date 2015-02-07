@@ -1,6 +1,5 @@
-package Proj1;
-import java.io.IOException;
-import java.io.InputStream;
+package service;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import org.apache.commons.codec.binary.Base64;
