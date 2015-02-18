@@ -10,7 +10,7 @@ import org.json.*;
  * Created by ruiboli on 2/7/15.
  */
 public class Bing {
-    public static String getResult(List<String> queryList,String key) throws Exception {
+    public static String search(List<String> queryList, String key) throws Exception {
         String q = "";
         for(int i=0; i<queryList.size();++i){
             q += queryList.get(i);
@@ -35,6 +35,11 @@ public class Bing {
         return content;
     }
 
+    /**
+     * Parse the json and get the search result list.
+     * @param jsonResult
+     * @return
+     */
     public static List<SearchResult> json2Result(String jsonResult){
         JSONObject jsonObject = new JSONObject(jsonResult);
         JSONArray resultList = jsonObject.getJSONObject("d").getJSONArray("results");
@@ -52,5 +57,6 @@ public class Bing {
         }
         return srlist;
     }
+
 
 }

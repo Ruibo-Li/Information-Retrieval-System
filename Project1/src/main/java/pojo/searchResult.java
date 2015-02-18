@@ -1,12 +1,18 @@
 package pojo;
 
 /**
+ * The pojo class for the search result.
  * Created by szeyiu on 2/17/15.
  */
 public class SearchResult {
     public String title;
     public String description;
     public String url;
+    public boolean relevant;
+
+    public SearchResult(){
+        relevant = false;
+    }
 
     public String getTitle() {
         return title;
@@ -34,5 +40,13 @@ public class SearchResult {
 
     public String toString(){
         return "[\ntitle: "+title + "\ndescription: "+description+"\nurl: "+url+ "\n]";
+    }
+
+    public boolean isRelevant() {
+        return relevant;
+    }
+
+    public void setRelevant(boolean relevant) {
+        this.relevant = relevant;
     }
 }
