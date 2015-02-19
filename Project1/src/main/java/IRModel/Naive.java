@@ -11,12 +11,71 @@ public class Naive {
     public double beta;
     public double gamma;
     public double precision;
+    public double titleFactor;
     public int iter;
+    public Set<String> propSet;
+    boolean antiProp;
     public Naive(){
         iter = 0;
         beta = 0.75;
         gamma = 0.15;
+        titleFactor = 3;
         precision = 0.9;
+        antiProp = true;
+        String[] pArray = {
+                "above",
+                "after",
+                "against",
+                "along",
+                "amid",
+                "among",
+                "around",
+                "as",
+                "at",
+                "before",
+                "behind",
+                "below",
+                "beside",
+                "besides",
+                "between",
+                "beyond",
+                "but",
+                "by",
+                "despite",
+                "during",
+                "for",
+                "from",
+                "in",
+                "into",
+                "like",
+                "near",
+                "of",
+                "off",
+                "on",
+                "onto",
+                "over",
+                "past",
+                "per",
+                "plus",
+                "round",
+                "save",
+                "since",
+                "than",
+                "through",
+                "to",
+                "toward",
+                "towards",
+                "under",
+                "unlike",
+                "until",
+                "up",
+                "upon",
+                "via",
+                "with",
+                "he", "she", "it", "the", "these", "those", "this"
+        };
+        propSet = new HashSet<String>();
+        for(String prop: pArray)    propSet.add(prop);
     }
 
     public void setParam(double beta, double gamma){
@@ -145,6 +204,7 @@ public class Naive {
         String maxQ = "";
         double maxW = -100000000;
         for(String q: Q.keySet()){
+            if(antiProp && propSet.contains(q)) continue;
             double w = Q.get(q);
             if(w>maxmaxW){
                 maxW = maxmaxW;
@@ -170,14 +230,24 @@ public class Naive {
      * @return
      */
     public List<String> updateQuery(List<String> queryList, List<SearchResult> searchResults){
+        if(iter==0){
+            for(String w: queryList)    antiProp = antiProp && !propSet.contains(w);
+        }
+        System.out.println("Naive Model is updating query, iter: "+iter+ ", ignore prop: "+antiProp);
         List<Map<String, Double>> relevantVectors = new ArrayList<Map<String, Double>>();
         List<Map<String, Double>> inrelevantVectors = new ArrayList<Map<String, Double>>();
 
         for(SearchResult searchResult: searchResults){
-            if(searchResult.isRelevant()){
-                relevantVectors.add(getDocVector(searchResult.getTitle()+" "+searchResult.getDescription()));
+            if(searchResult.isRelevant()) {
+                relevantVectors.add(
+                        addVector(scaleVector(getDocVector(searchResult.getTitle()),titleFactor),
+                                getDocVector(searchResult.getDescription()))
+                );
             } else {
-                inrelevantVectors.add(getDocVector(searchResult.getTitle()+" "+searchResult.getDescription()));
+                inrelevantVectors.add(
+                        addVector(scaleVector(getDocVector(searchResult.getTitle()), titleFactor),
+                                getDocVector(searchResult.getDescription()))
+                );
             }
         }
 

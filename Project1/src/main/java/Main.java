@@ -8,7 +8,7 @@ import pojo.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         List<String> qlist = new ArrayList<String>();
-        qlist.add("gates".toLowerCase());
+        qlist.add("musk".toLowerCase());
         //qlist.add("american");
         //qlist.add("(born");
         //qlist.add("bill");

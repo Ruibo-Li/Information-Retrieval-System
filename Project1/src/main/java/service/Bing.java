@@ -77,12 +77,12 @@ public class Bing {
             System.out.println(searchResult.toString());
             while(true){
                 System.out.println("Is this content relevant? (yes/no)");
-                String answer = user_input.next();
-                if(answer.equals("yes")) {
+                String answer = user_input.next().toLowerCase();
+                if(answer.equals("yes")||answer.equals("y")) {
                     searchResult.setRelevant(true);
                     break;
                 }
-                else if(answer.equals("no")) {
+                else if(answer.equals("no")||answer.equals("n")) {
                     searchResult.setRelevant(false);
                     break;
                 }
