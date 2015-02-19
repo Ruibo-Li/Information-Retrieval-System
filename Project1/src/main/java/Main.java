@@ -1,3 +1,4 @@
+import IRModel.Naive;
 import service.*;
 import java.util.*;
 import pojo.*;
@@ -6,15 +7,19 @@ import pojo.*;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        List<String> qlist = Arrays.asList("bill", "gates");
+        List<String> qlist = new ArrayList<String>();
+        qlist.add("gates".toLowerCase());
+        //qlist.add("american");
+        //qlist.add("(born");
+        //qlist.add("bill");
+        //qlist.add("computer");
         String key = "OGwFXUbDNNw/U2hhi/vhjWdahU36dTuk5V2ZUis7+VU";
-        Bing.Interact(qlist, key);
-/*
-        String jscontent = Bing.search(qlist, key);
-        List<SearchResult> searchResults = Bing.json2Result(jscontent);
-        for(SearchResult searchResult: searchResults){
-            System.out.println(searchResult.toString());
+
+        Naive naive = new Naive();
+        while(qlist!=null){
+            List<SearchResult> searchResults = Bing.Interact(qlist, key);
+            qlist = naive.updateQuery(qlist, searchResults);
         }
-        */
+
     }
 }

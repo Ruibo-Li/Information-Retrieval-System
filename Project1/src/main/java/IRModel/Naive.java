@@ -1,5 +1,7 @@
 package IRModel;
 import pojo.*;
+
+import java.lang.reflect.Array;
 import java.util.*;
 /**
  * The very naive method, refering to the book P182
@@ -8,16 +10,21 @@ import java.util.*;
 public class Naive {
     public double beta;
     public double gamma;
+    public double precision;
     public int iter;
     public Naive(){
         iter = 0;
         beta = 0.75;
         gamma = 0.15;
+        precision = 0.9;
     }
 
     public void setParam(double beta, double gamma){
         this.beta = beta;
         this.gamma = gamma;
+    }
+    public void setPrecision(double p){
+        precision = p;
     }
     /**
      * tokenize the string and eliminate strings that are not English word.
@@ -165,6 +172,7 @@ public class Naive {
     public List<String> updateQuery(List<String> queryList, List<SearchResult> searchResults){
         List<Map<String, Double>> relevantVectors = new ArrayList<Map<String, Double>>();
         List<Map<String, Double>> inrelevantVectors = new ArrayList<Map<String, Double>>();
+
         for(SearchResult searchResult: searchResults){
             if(searchResult.isRelevant()){
                 relevantVectors.add(getDocVector(searchResult.getTitle()+" "+searchResult.getDescription()));
@@ -172,8 +180,19 @@ public class Naive {
                 inrelevantVectors.add(getDocVector(searchResult.getTitle()+" "+searchResult.getDescription()));
             }
         }
+
+        double p = 1.0*relevantVectors.size()/(relevantVectors.size()+inrelevantVectors.size());
+        if(p==0.0){
+            System.out.println("No relevant result, Naive Model terminate");
+            return null;
+        }
+        System.out.println("The result precision is "+p);
+        if(p >= precision){
+            System.out.println("Naive Model has reached the precision: "+precision+"\nFinish!");
+            return null;
+        }
         List<String> top2List =  top2Query(relevantVectors, inrelevantVectors, queryList);
-        queryList.addAll(top2List);
+        for(String w: top2List) queryList.add(w);
         iter++;
         return queryList;
     }

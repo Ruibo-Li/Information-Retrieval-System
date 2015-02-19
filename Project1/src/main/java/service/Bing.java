@@ -46,9 +46,9 @@ public class Bing {
         List<SearchResult> srlist = new ArrayList<SearchResult>();
         for(int i=0; i<resultList.length(); ++i){
             JSONObject ele = resultList.getJSONObject(i);
-            String title = ele.getString("Title");
-            String desc = ele.getString("Description");
-            String url = ele.getString("Url");
+            String title = ele.getString("Title").toLowerCase();
+            String desc = ele.getString("Description").toLowerCase();
+            String url = ele.getString("Url").toLowerCase();
             SearchResult rst = new SearchResult();
             rst.setTitle(title);
             rst.setDescription(desc);
