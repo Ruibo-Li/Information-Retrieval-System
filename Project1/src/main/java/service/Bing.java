@@ -11,6 +11,16 @@ import org.json.*;
  */
 public class Bing {
     public static String search(List<String> queryList, String key) throws Exception {
+        StringBuilder log = new StringBuilder();
+        log.append("Search");
+        for(String keyword :queryList) {
+            log.append(' ');
+            log.append("\"");
+            log.append(keyword);
+            log.append("\"");
+        }
+        log.append("...");
+        System.out.println(log.toString());
         String q = "";
         for(int i=0; i<queryList.size();++i){
             q += queryList.get(i);
