@@ -6,14 +6,13 @@ import java.util.*;
  * Created by szeyiu on 2/17/15.
  */
 public class Naive {
-    public List<SearchResult> searchResults;
     public double beta;
     public double gamma;
-    public List<String> queryList;
-
-    public Naive(List<String> queryList, List<SearchResult> searchResults){
-        this.queryList = queryList;
-        this.searchResults = searchResults;
+    public int iter;
+    public Naive(){
+        iter = 0;
+        beta = 0.75;
+        gamma = 0.15;
     }
 
     public void setParam(double beta, double gamma){
@@ -113,7 +112,7 @@ public class Naive {
         return v;
     }
 
-    private List<String> top2Query(List<Map<String, Double>> relevantVectors, List<Map<String, Double>> inrelevantVectors){
+    private List<String> top2Query(List<Map<String, Double>> relevantVectors, List<Map<String, Double>> inrelevantVectors, List<String> oldQueryList){
         Map<String, Double> relevantSum = new HashMap<String, Double>();
         double Dr = relevantVectors.size();
         for(Map<String, Double> reVector: relevantVectors){
@@ -129,7 +128,7 @@ public class Naive {
         relevantSum = scaleVector(relevantSum, beta/Dr);
         inrelevantSum = scaleVector(inrelevantSum, gamma/Dnr);
         Map<String, Double> Q = minorVector(relevantSum, inrelevantSum);
-        for(String q: queryList){
+        for(String q: oldQueryList){
             if(Q.containsKey(q)){
                 Q.remove(q);
             }
@@ -156,7 +155,14 @@ public class Naive {
         return rst;
     }
 
-    public List<String> result(){
+    /**
+     * the main function for this class, input query keywords, and search result with relevant info,
+     * then the Naive model will update the query keywords for next iteration.
+     * @param queryList
+     * @param searchResults
+     * @return
+     */
+    public List<String> updateQuery(List<String> queryList, List<SearchResult> searchResults){
         List<Map<String, Double>> relevantVectors = new ArrayList<Map<String, Double>>();
         List<Map<String, Double>> inrelevantVectors = new ArrayList<Map<String, Double>>();
         for(SearchResult searchResult: searchResults){
@@ -166,6 +172,9 @@ public class Naive {
                 inrelevantVectors.add(getDocVector(searchResult.getTitle()+" "+searchResult.getDescription()));
             }
         }
-        return top2Query(relevantVectors, inrelevantVectors);
+        List<String> top2List =  top2Query(relevantVectors, inrelevantVectors, queryList);
+        queryList.addAll(top2List);
+        iter++;
+        return queryList;
     }
 }
