@@ -58,5 +58,28 @@ public class Bing {
         return srlist;
     }
 
+    public static List<SearchResult> Interact(List<String> queryList, String key) throws Exception{
+        String jscontent = search(queryList, key);
+        List<SearchResult> searchResults = Bing.json2Result(jscontent);
+        Scanner user_input = new Scanner(System.in);
 
+        for(SearchResult searchResult: searchResults){
+            System.out.println(searchResult.toString());
+            while(true){
+                System.out.println("Is this content relevant? (yes/no)");
+                String answer = user_input.next();
+                if(answer.equals("yes")) {
+                    searchResult.setRelevant(true);
+                    break;
+                }
+                else if(answer.equals("no")) {
+                    searchResult.setRelevant(false);
+                    break;
+                }
+                else
+                    System.out.println("Invalid input. Please input again.");
+            }
+        }
+        return searchResults;
+    }
 }
