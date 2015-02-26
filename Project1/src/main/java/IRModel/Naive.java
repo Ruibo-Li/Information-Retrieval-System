@@ -22,7 +22,7 @@ public class Naive {
         titleFactor = 3;
         precision = 0.9;
         antiProp = true;
-        BufferedReader br = new BufferedReader(new FileReader("StopWords.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/StopWords.txt"));
         propSet = new HashSet<String>();
         try {
             String line = br.readLine();

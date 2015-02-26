@@ -2,6 +2,8 @@ package IRModel;
 
 import pojo.SearchResult;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.*;
 
 /**
@@ -16,67 +18,24 @@ public class NaiveTunned {
     public int iter;
     public Set<String> propSet;
     boolean antiProp;
-    public NaiveTunned(){
+    public NaiveTunned() throws Exception{
         iter = 0;
         beta = 0.75;
-        gamma = 0.15;
-        titleFactor = 3;
+        gamma = 0.25;
+        titleFactor = 1;
         precision = 0.9;
         antiProp = true;
-        String[] pArray = {
-                "above",
-                "after",
-                "against",
-                "along",
-                "amid",
-                "among",
-                "around",
-                "as",
-                "at",
-                "before",
-                "behind",
-                "below",
-                "beside",
-                "besides",
-                "between",
-                "beyond",
-                "but",
-                "by",
-                "despite",
-                "during",
-                "for",
-                "from",
-                "in",
-                "into",
-                "like",
-                "near",
-                "of",
-                "off",
-                "on",
-                "onto",
-                "over",
-                "past",
-                "per",
-                "plus",
-                "round",
-                "save",
-                "since",
-                "than",
-                "through",
-                "to",
-                "toward",
-                "towards",
-                "under",
-                "unlike",
-                "until",
-                "up",
-                "upon",
-                "via",
-                "with",
-                "he", "she", "it", "the", "these", "those", "this"
-        };
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/StopWords.txt"));
         propSet = new HashSet<String>();
-        for(String prop: pArray)    propSet.add(prop);
+        try {
+            String line = br.readLine();
+            while (line != null) {
+                propSet.add(line);
+                line = br.readLine();
+            }
+        } finally {
+            br.close();
+        }
     }
 
     public void setParam(double beta, double gamma){
@@ -96,7 +55,9 @@ public class NaiveTunned {
         List<String> rst = new ArrayList<String>();
         for(String word: splitStr){
             if(word.matches(".*[a-zA-Z]+.*")){
-                rst.add(word);
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i<word.length();++i) if(Character.isLetter(word.charAt(i))) sb.append(word.charAt(i));
+                rst.add(sb.toString());
             }
         }
         return rst;
@@ -104,6 +65,7 @@ public class NaiveTunned {
 
     /**
      * get the doc vector from the str
+     *
      * @param str
      * @return
      */
@@ -179,7 +141,60 @@ public class NaiveTunned {
         return v;
     }
 
+    private void normalize(Map<String, Double> v){
+        double sum = 0;
+        for(String w: v.keySet()){
+            sum += v.get(w)*v.get(w);
+        }
+        for(String w: v.keySet()){
+            v.put(w, v.get(w)/sum);
+        }
+    }
+
     private List<String> top2Query(List<Map<String, Double>> relevantVectors, List<Map<String, Double>> inrelevantVectors, List<String> oldQueryList){
+        int relevantCount = relevantVectors.size();
+        int inrelevantCount = inrelevantVectors.size();
+        Map<String, Integer> wordDocCountInRelevant = new HashMap<String, Integer>();
+        // forming inverted list here
+        for(Map<String, Double> vector: relevantVectors){
+            for(String w: vector.keySet()){
+                if(!wordDocCountInRelevant.containsKey(w)){
+                    wordDocCountInRelevant.put(w,0);
+                }
+                wordDocCountInRelevant.put(w, wordDocCountInRelevant.get(w)+1);
+            }
+        }
+        Map<String, Integer> wordDocCountInNonRelevant = new HashMap<String, Integer>();
+        for(Map<String, Double> vector: inrelevantVectors){
+            for(String w: vector.keySet()){
+                if(!wordDocCountInNonRelevant.containsKey(w)){
+                    wordDocCountInNonRelevant.put(w,0);
+                }
+                wordDocCountInNonRelevant.put(w, wordDocCountInNonRelevant.get(w)+1);
+            }
+        }
+        // calculating tf-idf here
+        for(Map<String, Double> relevantVector: relevantVectors){
+            for(String w: relevantVector.keySet()){
+                int docCount = wordDocCountInNonRelevant.containsKey(w)? wordDocCountInNonRelevant.get(w):0;
+                int docCount0 = wordDocCountInRelevant.containsKey(w)? wordDocCountInRelevant.get(w):0;
+                //double idf = Math.log((inrelevantCount+1.0)/(docCount+1));// - Math.log((relevantCount+1.0)/(docCount0+1));
+                double idf = Math.log(10.0/(docCount+docCount0));
+                relevantVector.put(w, relevantVector.get(w)*idf);
+            }
+            //normalize(relevantVector);
+        }
+        for(Map<String, Double> inrelevantVector: inrelevantVectors){
+            for(String w: inrelevantVector.keySet()){
+                int docCount = wordDocCountInRelevant.containsKey(w)? wordDocCountInRelevant.get(w):0;
+                int docCount0 = wordDocCountInNonRelevant.containsKey(w)? wordDocCountInNonRelevant.get(w):0;
+                //double idf = Math.log((relevantCount+1.0)/(docCount+1)) ;//- Math.log((inrelevantCount+1.0)/(docCount0+1));
+                double idf = Math.log(10.0/(docCount+docCount0));
+                inrelevantVector.put(w, inrelevantVector.get(w)*idf);
+            }
+            //normalize(inrelevantVector);
+        }
+        //now relevantVector and inrelevantVector are weights of tf-idf
         Map<String, Double> relevantSum = new HashMap<String, Double>();
         double Dr = relevantVectors.size();
         for(Map<String, Double> reVector: relevantVectors){
@@ -241,13 +256,23 @@ public class NaiveTunned {
         for(SearchResult searchResult: searchResults){
             if(searchResult.isRelevant()) {
                 relevantVectors.add(
-                        scaleVector(addVector(scaleVector(getDocVector(searchResult.getTitle()),titleFactor),
-                                getDocVector(searchResult.getDescription())), (10 - searchResult.topK)/2.0)
+                        addVector(
+                                scaleVector(
+                                        getDocVector(searchResult.getTitle()),
+                                        titleFactor
+                                ),
+                                getDocVector(searchResult.getDescription())
+                        )
                 );
             } else {
                 inrelevantVectors.add(
-                        scaleVector(addVector(scaleVector(getDocVector(searchResult.getTitle()), titleFactor),
-                                getDocVector(searchResult.getDescription())), (10 - searchResult.topK)/2.0)
+                        addVector(
+                                scaleVector(
+                                        getDocVector(searchResult.getTitle()),
+                                        titleFactor
+                                ),
+                                getDocVector(searchResult.getDescription())
+                        )
                 );
             }
         }
@@ -257,9 +282,9 @@ public class NaiveTunned {
             System.out.println("No relevant result, Naive Model terminate");
             return null;
         }
-        System.out.println("The result precision is "+p);
+        System.out.println("\n\n\n\nThe result precision is "+p);
         if(p >= precision){
-            System.out.println("Naive Model has reached the precision: "+precision+"\nFinish!");
+            System.out.println("Naive Model has reached the precision: "+precision+"\nIteration:"+iter+"\nFinish!");
             return null;
         }
         List<String> top2List =  top2Query(relevantVectors, inrelevantVectors, queryList);
