@@ -73,11 +73,13 @@ public class Bing {
         String jscontent = search(queryList, key);
         List<SearchResult> searchResults = Bing.json2Result(jscontent);
         Scanner user_input = new Scanner(System.in);
-
+        int i=0;
         for(SearchResult searchResult: searchResults){
+            ++i;
+            System.out.println("************RESULT "+i+"**************");
             System.out.println(searchResult.toString());
             while(true){
-                System.out.println("Is this content relevant? (yes/no)");
+                System.out.println("Is this content relevant? (Y/N)");
                 String answer = user_input.next().toLowerCase();
                 if(answer.equals("yes")||answer.equals("y")) {
                     searchResult.setRelevant(true);

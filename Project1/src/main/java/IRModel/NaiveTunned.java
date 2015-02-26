@@ -288,6 +288,7 @@ public class NaiveTunned {
             return null;
         }
         List<String> top2List =  top2Query(relevantVectors, inrelevantVectors, queryList);
+        System.out.println("query expanded by: "+top2List.get(0)+" "+top2List.get(1));
         for(String w: top2List) queryList.add(w);
         iter++;
         return queryList;

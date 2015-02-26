@@ -1,4 +1,5 @@
 import IRModel.Naive;
+import IRModel.NaiveTunned;
 import service.*;
 import java.util.*;
 import pojo.*;
@@ -8,14 +9,17 @@ import pojo.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         List<String> qlist = new ArrayList<String>();
-        qlist.add("musk".toLowerCase());
-        //qlist.add("american");
-        //qlist.add("(born");
-        //qlist.add("bill");
-        //qlist.add("computer");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type your query, use space to split if more than 1 word:");
+        String line = scanner.nextLine();
+        String[] wordlist = line.split(" ");
+        for(String w: wordlist) {
+            if(w.trim().length()>0)
+                qlist.add(w.toLowerCase());
+        }
         String key = "OGwFXUbDNNw/U2hhi/vhjWdahU36dTuk5V2ZUis7+VU";
 
-        Naive naive = new Naive();
+        NaiveTunned naive = new NaiveTunned();
         while(qlist!=null){
             List<SearchResult> searchResults = Bing.Interact(qlist, key);
             qlist = naive.updateQuery(qlist, searchResults);
