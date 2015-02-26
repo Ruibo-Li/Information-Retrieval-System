@@ -63,6 +63,7 @@ public class Bing {
             rst.setTitle(title);
             rst.setDescription(desc);
             rst.setUrl(url);
+            rst.setTopK(i);
             srlist.add(rst);
         }
         return srlist;

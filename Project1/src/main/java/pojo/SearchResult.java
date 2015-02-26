@@ -10,6 +10,15 @@ public class SearchResult {
     public String url;
     public boolean relevant;
 
+    public int getTopK() {
+        return topK;
+    }
+
+    public void setTopK(int topK) {
+        this.topK = topK;
+    }
+
+    public int topK;
     public SearchResult(){
         relevant = false;
     }

@@ -1,5 +1,6 @@
 package IRModel;
-import pojo.*;
+
+import pojo.SearchResult;
 
 import java.util.*;
 
@@ -240,13 +241,13 @@ public class NaiveTunned {
         for(SearchResult searchResult: searchResults){
             if(searchResult.isRelevant()) {
                 relevantVectors.add(
-                        addVector(scaleVector(getDocVector(searchResult.getTitle()),titleFactor),
-                                getDocVector(searchResult.getDescription()))
+                        scaleVector(addVector(scaleVector(getDocVector(searchResult.getTitle()),titleFactor),
+                                getDocVector(searchResult.getDescription())), (10 - searchResult.topK)/2.0)
                 );
             } else {
                 inrelevantVectors.add(
-                        addVector(scaleVector(getDocVector(searchResult.getTitle()), titleFactor),
-                                getDocVector(searchResult.getDescription()))
+                        scaleVector(addVector(scaleVector(getDocVector(searchResult.getTitle()), titleFactor),
+                                getDocVector(searchResult.getDescription())), (10 - searchResult.topK)/2.0)
                 );
             }
         }
