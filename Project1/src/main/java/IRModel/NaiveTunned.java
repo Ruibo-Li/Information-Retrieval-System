@@ -2,11 +2,12 @@ package IRModel;
 import pojo.*;
 
 import java.util.*;
+
 /**
  * The very naive method, refering to the book P182
  * Created by szeyiu on 2/17/15.
  */
-public class Naive {
+public class NaiveTunned {
     public double beta;
     public double gamma;
     public double precision;
@@ -14,7 +15,7 @@ public class Naive {
     public int iter;
     public Set<String> propSet;
     boolean antiProp;
-    public Naive(){
+    public NaiveTunned(){
         iter = 0;
         beta = 0.75;
         gamma = 0.15;
