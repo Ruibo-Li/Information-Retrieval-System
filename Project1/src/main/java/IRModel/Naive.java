@@ -3,6 +3,7 @@ import pojo.*;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.io.*;
 /**
  * The very naive method, refering to the book P182
  * Created by szeyiu on 2/17/15.
@@ -15,13 +16,25 @@ public class Naive {
     public int iter;
     public Set<String> propSet;
     boolean antiProp;
-    public Naive(){
+    public Naive() throws Exception{
         iter = 0;
         beta = 0.75;
         gamma = 0.15;
         titleFactor = 3;
         precision = 0.9;
         antiProp = true;
+        BufferedReader br = new BufferedReader(new FileReader("StopWords.txt"));
+        propSet = new HashSet<String>();
+        try {
+            String line = br.readLine();
+            while (line != null) {
+                propSet.add(line);
+                line = br.readLine();
+            }
+        } finally {
+            br.close();
+        }
+        /*
         String[] pArray = {
                 "above",
                 "after",
@@ -74,8 +87,10 @@ public class Naive {
                 "with",
                 "he", "she", "it", "the", "these", "those", "this"
         };
+
         propSet = new HashSet<String>();
         for(String prop: pArray)    propSet.add(prop);
+        */
     }
 
     public void setParam(double beta, double gamma){
