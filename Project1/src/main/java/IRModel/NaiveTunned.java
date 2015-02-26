@@ -57,6 +57,7 @@ public class NaiveTunned {
             if(word.matches(".*[a-zA-Z]+.*")){
                 StringBuilder sb = new StringBuilder();
                 for(int i=0; i<word.length();++i) if(Character.isLetter(word.charAt(i))) sb.append(word.charAt(i));
+                //if(antiProp && propSet.contains(sb.toString())) continue;
                 rst.add(sb.toString());
             }
         }
