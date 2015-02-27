@@ -4,10 +4,9 @@ Siyao Li (sl3766)
 
 b)
 Files:
-COMSE6111
-    - README.md
+rl2733-proj1
+    - README.txt
     - Project1
-        - COMS E6111_ Project 1.pdf
         - pom.xml
         - project1.iml
         - readme.txt
@@ -24,24 +23,14 @@ COMSE6111
                         - NaiveTunned.java
                     - pojo
                         - SearchResult.java
-        - target
-            - MANIFEST.MF
-            - classes
-                - Main.class
-                - StopWords.txt
-                - IRModel
-                    - Naive.class
-                    - NaiveTunned.class
-                - pojo
-                    - SearchResult.class
-                - service
-                    - Bing.class
-            - generated-sources
-                - annotations
+
 
 c)
-Our project is built as a maven project. To run the program, type the following command under the directory COMSE6111/Project1
-$ java -jar ./target/project1-1.0-SNAPSHOT-jar-with-dependencies.jar
+Our project is built as a maven project. To run the program, type the following command under the directory rl2733-proj1/Project1/:
+$ mvn clean package
+$ java -jar ./target/project1-1.0-SNAPSHOT-jar-with-dependencies.jar <bing account key> <precision> <query>
+
+Note: "mvn clean package" will download necessary plugin and libraries, which might take *a few minutes*. After it says BUILD SUCCESS, jar project1-1.0-SNAPSHOT-jar-with-dependencies.jar will appear in the rl2733-proj1/Project1/target/ directory. Then run the jar file with parameters. If there is some problem when building the project, please use the back-up jar RUN.jar, which is generated in clic by ourselves. 
 
 d)
 Besides Main.java, the source code of our implementation consists of 3 package: IRModel, pojo and service.
