@@ -11,7 +11,7 @@ import java.util.*;
  * The very naive method, refering to the book P182
  * Created by szeyiu on 2/17/15.
  */
-public class NaiveTunned {
+public class Rocchio {
     public double beta;
     public double gamma;
     public double precision;
@@ -19,12 +19,12 @@ public class NaiveTunned {
     public int iter;
     public Set<String> propSet;
     boolean antiProp;
-    public NaiveTunned() throws Exception{
+    public Rocchio(double p) throws Exception{
         iter = 0;
         beta = 0.75;
         gamma = 0.25;
         titleFactor = 1;
-        precision = 0.9;
+        precision = p;
         antiProp = true;
         BufferedReader br = new BufferedReader(new FileReader("StopWords.txt"));
         propSet = new HashSet<String>();
@@ -237,9 +237,16 @@ public class NaiveTunned {
         List<String> rst = new ArrayList<String>();
         rst.add(maxmaxQ);
         rst.add(maxQ);
+        //Debug HERE!
+        //printMap(Q);
         return rst;
     }
-
+    private void printMap(Map<String, Double> map){
+        for(String w: map.keySet()){
+            if(propSet.contains(w)) continue;
+            System.out.println(w+"\t"+map.get(w));
+        }
+    }
     /**
      * the main function for this class, input query keywords, and search result with relevant info,
      * then the Naive model will update the query keywords for next iteration.

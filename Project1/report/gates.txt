@@ -1,0 +1,266 @@
+Search "gates"...
+************  RESULT 1  **************
+[
+title: gates corporation
+description: gates corporation is powering progress™ in the oil & gas, energy, mining, marine, agriculture, transportation and automotive industries.
+url: http://www.gates.com/
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 2  **************
+[
+title: amazon.com: gates
+description: product description... easy open extra wide safety gate boasts 100 percent steel ...
+url: http://www.amazon.com/s?ie=utf8&page=1&rh=i%3aaps%2ck%3agates
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 3  **************
+[
+title: driveway gates | automatic gates | electric gates
+description: driveway gates - automatic gates the high-quality driveway gates from gatecrafters.com come in a wide variety of options to ...
+url: http://www.gatecrafters.com/design_your_gates.aspx
+]
+Is this content relevant? (Y/N)
+N
+************  RESULT 4  **************
+[
+title: gates automotive aftermarket solutions | gates corporation
+description: gates offers a complete line of original equipment (oe) automotive aftermarket products and solutions, including automotive hose, belts, & accessories.
+url: http://www.gates.com/industries/automotive
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 5  **************
+[
+title: gates | facebook
+description: gates joined us after their session for an interview to discuss nebraska, the "real dan" and the finer points of recording a bass drum in a large empty room ...
+url: https://www.facebook.com/gatesnj
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 6  **************
+[
+title: gates bar b.q.
+description: with the tantalizing hickory barbecue smell drawing the customer through the ranch-style doors, he is immediately greeted.
+url: http://www.gatesbbq.com/
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 7  **************
+[
+title: gates underwater products | 'bulletproof' housings
+description: zsolt sásdi demonstrates how to produce incredible underwater motion images with the gates ax100 rig. his demo reel can be viewed in 4k. www.saser.hu...
+url: http://gateshousings.com/
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 8  **************
+[
+title: navigates - gates corporation
+description: gates high quality belt & hose solutions support your energy, exploration, extraction, infrastructure, agriculture & transportation needs.
+url: http://navigates.gates.com/
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 9  **************
+[
+title: baby gates - babies"r"us
+description: safe & durable baby gates will keep your baby safe. choose from a large assortment of baby gates including extra wide gates to suit your needs. shop today.
+url: http://www.toysrus.com/family/index.jsp?categoryid=2256222
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 10  **************
+[
+title: bill gates - wikipedia, the free encyclopedia
+description: william henry "bill" gates iii (born october 28, 1955) is an american business magnate, philanthropist, investor, computer programmer, and inventor. gates ...
+url: http://en.wikipedia.org/wiki/bill_gates
+]
+Is this content relevant? (Y/N)
+y
+Naive Model is updating query, iter: 0, ignore prop: true
+
+
+
+
+The result precision is 0.1
+query expanded by: american william
+Search "gates" "american" "william"...
+************  RESULT 1  **************
+[
+title: bill gates - wikipedia, the free encyclopedia
+description: william henry "bill" gates iii (born october 28, 1955) is an american business magnate, philanthropist, investor, computer programmer, and inventor. gates originally ...
+url: http://en.wikipedia.org/wiki/bill_gates
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 2  **************
+[
+title: horatio gates - wikipedia, the free encyclopedia
+description: horatio lloyd gates (july 26, 1727 – april 10, 1806) was a retired british soldier who served as an american general during the revolutionary war.
+url: http://en.wikipedia.org/wiki/horatio_gates
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 3  **************
+[
+title: bill gates | biography - american computer programmer ...
+description: bill gates, in full william henry gates iii (born october 28, 1955, seattle, washington, u.s.), american computer programmer and entrepreneur who cofounded microsoft ...
+url: http://www.britannica.com/ebchecked/topic/226865/bill-gates
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 4  **************
+[
+title: bill gates - biography - - biography.com
+description: bill gates was born william henry gates iii on october 28, ... biography.com tracks the life and career of bill gates, ... titans of the american industrial revolution.
+url: http://www.biography.com/people/bill-gates-9307520#!
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 5  **************
+[
+title: bill gates - forbes - information for the world's business ...
+description: since bill gates started writing his annual letter in 2009, he’s pretty much stuck with the accomplishments and plans of the gates foundation.
+url: http://www.forbes.com/profile/bill-gates/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 6  **************
+[
+title: african american lives 2 . profiles . henry louis gates ...
+description: henry louis gates, jr. is the alphonse fletcher university professor at harvard university, as well as director of the w.e.b. du bois institute for african and ...
+url: http://www.pbs.org/wnet/aalives/profiles/index.html
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 7  **************
+[
+title: nba.com - national basketball association
+description: the official site of the national basketball association. includes news, features, multimedia, player profiles, chat transcripts, schedules and statistics.
+url: http://hoopedia.nba.com/index.php?title=william_%22pop%22_gates
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 8  **************
+[
+title: is bill gates a descendant of american revolutionary ...
+description: horatio gates' grandson is william e. gates, not known to be related to bill gates. ... is bill gates a descendant of american revolutionary general horatio gates?
+url: http://www.quora.com/is-bill-gates-a-descendant-of-american-revolutionary-general-horatio-gates
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 9  **************
+[
+title: bill gates - infoplease: encyclopedia, almanac, atlas ...
+description: bill gates. gates, bill (william henry gates 3d), 1955–, american business executive, b. seattle, wash. at the age of 19, gates founded (1974) the microsoft corp ...
+url: http://www.infoplease.com/encyclopedia/people/gates-bill.html
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 10  **************
+[
+title: gates, william, latin american bibliography, 1924-1925 ...
+description: call number: latin american library manuscripts, collection 73. a bibliographic card index of materials dating before 1924 on topics relating to latin america ...
+url: http://lal.tulane.edu/collections/manuscripts/gates73
+]
+Is this content relevant? (Y/N)
+n
+Naive Model is updating query, iter: 1, ignore prop: true
+
+
+
+
+The result precision is 0.6
+query expanded by: programmer biographycom
+Search "gates" "american" "william" "programmer" "biographycom"...
+************  RESULT 1  **************
+[
+title: bill gates | biography - american computer programmer ...
+description: bill gates, in full william henry gates iii (born october 28, 1955, seattle, washington, u.s.), american computer programmer and entrepreneur who cofounded microsoft ...
+url: http://www.britannica.com/ebchecked/topic/226865/bill-gates
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 2  **************
+[
+title: bill gates biography american computer programmer 2015 ...
+description: bill gates biography american computer programmer. ... american computer programmer bill gates, in full william henry ... biography.com tracks the life and ...
+url: http://hny2015.org/tag/bill-gates-biography-american-computer-programmer
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 3  **************
+[
+title: bill gates richest person biography | biography
+description: william henry “bill” gates is an american business magnate, computer programmer and great entrepreneur. gates is the former chief executive and ... bill gates was ...
+url: http://www.biographybd.com/bill-gates-biography/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 4  **************
+[
+title: bill gates - biography - - biography.com
+description: bill gates was born william henry gates iii on october ... mark zuckerberg was a computer programmer by the age of 12. ... "bill gates," the biography.com website, ...
+url: http://www.biography.com/people/bill-gates-9307520#!
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 5  **************
+[
+title: bill gates biography american computer programmer | radhen ...
+description: bill gates biography american computer programmer bill gates, in full william ... american computer programmer and ... gates biography biography com
+url: http://radhenbhoncel.com/videos/bill+gates+biography+american+computer+programmer+.html
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 6  **************
+[
+title: famous people named bill biographycom - picture and wallpaper
+description: william henry gates iii, kbe (born october 28, 1955), popularly known as bill gates, is an american business magnate, ... bill gates - biography - - biography.com ...
+url: http://picture-wallpaper.com/famous-people-named-bill---biographycom
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 7  **************
+[
+title: bill gates biography biography com famous
+description: bill gates biography biography com famous ... philanthropist, investor, computer programmer, and inventor. gates ... born william henry iii is an american ...
+url: http://www.frenchmanicurenaildesign.com/bill-gates-biography-biography-com-famous
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 8  **************
+[
+title: famous biographies & tv shows - biography.com
+description: biography. people; in the news; nostalgia; celebrity; history & culture; famous lookalikes; ... hattie mcdaniel made history as the first african american to win an ...
+url: http://www.biography.com/#!
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 9  **************
+[
+title: bill gates biography biographycom famous - videoday
+description: ... bill gates biography biographycom famous william henry "bill" gates iii (born october 28, 1955) american ... programmer, and inventor. bill gates ...
+url: http://videoday.info/search/bill-gates-biography-biographycom-famous-
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 10  **************
+[
+title: bill gates biography biographycom - fakta.co | penyaji ...
+description: ... philanthropist.william henry "bill" gates ... american business magnate philanthropist investor computer programmer and inventor. gates originally.bill ...
+url: http://www.fakta.co/tag/bill-gates-biography-biographycom
+]
+Is this content relevant? (Y/N)
+y
+Naive Model is updating query, iter: 2, ignore prop: true
+
+
+
+
+The result precision is 0.9
+Naive Model has reached the precision: 0.9
+Iteration:2
+Finish!

@@ -1,0 +1,178 @@
+Search "musk"...
+************  RESULT 1  **************
+[
+title: musk - wikipedia, the free encyclopedia
+description: musk is a class of aromatic substances commonly used as base notes in perfumery. they include glandular secretions from animals such as the musk deer, numerous plants ...
+url: http://en.wikipedia.org/wiki/musk
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 2  **************
+[
+title: elon musk - wikipedia, the free encyclopedia
+description: elon reeve musk (born june 28, 1971) is a south africa-born, canadian-american entrepreneur, engineer, inventor and investor. he is the ceo and cto of ...
+url: http://en.wikipedia.org/wiki/elon_musk
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 3  **************
+[
+title: musk | define musk at dictionary.com
+description: the freezer case was full of curious meats: a snowy hunk of a fin whale's throat, a slab of musk ox. the resulting molecule is similar in shape and smell to the musk ...
+url: http://dictionary.reference.com/browse/musk
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 4  **************
+[
+title: musk perfume ingredient, musk fragrance and essential oils ...
+description: musk is a whole class of fragrant substances used as base notes in perfumery. this wonderful animalistic note creates a groundwork on which the rest of the aromatic ...
+url: http://www.fragrantica.com/notes/musk-4.html
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 5  **************
+[
+title: musk - definition and more from the free merriam-webster ...
+description: full definition of musk 1 a : a substance with a penetrating persistent odor obtained from a sac beneath the abdominal skin of the male musk deer and used as a ...
+url: http://www.merriam-webster.com/dictionary/musk
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 6  **************
+[
+title: musk - definition of musk by the free dictionary
+description: musk (mŭsk) n. 1. a. a greasy secretion with a powerful odor, produced in a glandular sac in the abdomen of a male musk deer and used in traditional medicines and ...
+url: http://www.thefreedictionary.com/musk
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 7  **************
+[
+title: musk oil | ebay
+description: find great deals on ebay for musk oil coty wild musk oil. shop with confidence.
+url: http://www.ebay.com/sch/i.html?_nkw=musk+oil
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 8  **************
+[
+title: amazon.com: perfume musk: beauty
+description: asdm beverly hills egyptian musk, a rich, egyptian musk with precious wood blends and floral top note., 0.5 ounce. $25.00 $24.95 ;
+url: http://www.amazon.com/s?ie=utf8&page=1&rh=n%3a3760911%2ck%3aperfume%20musk
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 9  **************
+[
+title: the original musk oil - 1-800-645-5048 - cooperlabs skin ...
+description: the original musk oil. its ability to excite has been spoken of for centuries. you may not even be aware of its fragrance, but your own body chemistry is releasing ...
+url: http://www.cooperlabs.com/musk/
+]
+Is this content relevant? (Y/N)
+n
+************  RESULT 10  **************
+[
+title: musk gene - genecards | musk protein | musk antibody
+description: complete information for musk gene (protein-coding), muscle, skeletal, receptor tyrosine kinase, including: function, proteins, disorders, pathways, orthologs, and ...
+url: http://www.genecards.org/cgi-bin/carddisp.pl?gene=musk
+]
+Is this content relevant? (Y/N)
+n
+Naive Model is updating query, iter: 0, ignore prop: true
+
+
+
+
+The result precision is 0.1
+query expanded by: elon cto
+Search "musk" "elon" "cto"...
+************  RESULT 1  **************
+[
+title: i am elon musk, ceo/cto of a rocket company, ama! : iama
+description: zip2, paypal, spacex, tesla and solarcity. started off doing software engineering and now do aerospace & automotive. falcon 9 launch webcast...
+url: http://www.reddit.com/r/iama/comments/2rgsan/i_am_elon_musk_ceocto_of_a_rocket_company_ama/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 2  **************
+[
+title: elon musk - wikipedia, the free encyclopedia
+description: elon reeve musk (born june 28, 1971) is a south africa-born, canadian-american entrepreneur, engineer, inventor and investor. he is the ceo and cto of ...
+url: http://en.wikipedia.org/wiki/elon_musk
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 3  **************
+[
+title: tesla ceo elon musk & cto jb straubel in norway q&a ...
+description: originally published on ev obsession. following up on the amsterdam q&a that tesla ceo elon musk and cto jb straubel held last week, below is a 1½-hour q ...
+url: http://cleantechnica.com/2014/02/08/tesla-ceo-elon-musk-cto-jb-straubel-norway-qa-videos/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 4  **************
+[
+title: elon musk & tesla cto jb straubel q&a in norway (videos) −
+description: following up on the amsterdam q&a that tesla ceo elon musk and cto jb straubel held last week, below is a 1½-hour q&a that was held in norway, electric vehicle (ev ...
+url: http://evobsession.com/elon-musk-tesla-cto-jb-straubel-qa-norway-videos/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 5  **************
+[
+title: elon musk & tesla cto jb straubel answer questions in ...
+description: tesla ceo elon musk and cto jb straubel recently stopped into amsterdam for a 1-hour townhall meeting with tesla model s owners and enthusiasts.
+url: http://cleantechnica.com/2014/02/08/elon-musk-tesla-cto-jb-straubel-answer-questions-amsterdam-video/
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 6  **************
+[
+title: elon musk | about.me
+description: elon musk is currently the ceo and cto of spacex, ceo and product architect of tesla motors and chairman of solarcity. musk is best known for having created the first ...
+url: http://about.me/elonmusk#!
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 7  **************
+[
+title: elon musk names spacex drone ships in honor of iain m ...
+description: while he’s working on getting humans into space, spacex ceo/cto elon musk hasn’t forgotten the greats who propelled us out of the stratosphere through fiction ...
+url: http://www.tor.com/blogs/2015/01/elon-musk-iain-m-banks-just-read-the-instructions
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 8  **************
+[
+title: elon musk: internet satellite network could fund mars ...
+description: spacex ceo and cto elon musk doesn't seem to run out of big ideas, and his latest one is a doozy: an earth-circling network of hundreds of small satellites that would ...
+url: http://www.sci-tech-today.com/news/musks+internet+ambitions+run+to+mars/story.xhtml?story_id=12200cq7901w
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 9  **************
+[
+title: elon musk wants to build the internet in space - business ...
+description: elon musk announced on friday that he wants to build a second internet in outer space that may be able to stretch all the way to mars one day, according to bloomberg ...
+url: http://www.businessinsider.com/elon-musk-space-internet-2015-1
+]
+Is this content relevant? (Y/N)
+y
+************  RESULT 10  **************
+[
+title: elon musk and spacex want to send you to mars
+description: photo: spacex "i am elon musk, ceo/cto of a rocket company ... zip2, paypal, spacex, tesla and solarcity. started off doing software engineering and now do ...
+url: http://www.fool.com/investing/general/2015/01/19/elon-musk-and-spacex-want-to-send-you-to-mars.aspx
+]
+Is this content relevant? (Y/N)
+y
+Naive Model is updating query, iter: 1, ignore prop: true
+
+
+
+
+The result precision is 1.0
+Naive Model has reached the precision: 0.9
+Iteration:1
+Finish!

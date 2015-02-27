@@ -76,7 +76,7 @@ public class Bing {
         int i=0;
         for(SearchResult searchResult: searchResults){
             ++i;
-            System.out.println("************RESULT "+i+"**************");
+            System.out.println("************  RESULT "+i+"  **************");
             System.out.println(searchResult.toString());
             while(true){
                 System.out.println("Is this content relevant? (Y/N)");
