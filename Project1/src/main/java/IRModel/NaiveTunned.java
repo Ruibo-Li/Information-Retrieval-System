@@ -3,6 +3,7 @@ package IRModel;
 import pojo.SearchResult;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class NaiveTunned {
         titleFactor = 1;
         precision = 0.9;
         antiProp = true;
-        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/StopWords.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("StopWords.txt"));
         propSet = new HashSet<String>();
         try {
             String line = br.readLine();
