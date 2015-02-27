@@ -9,20 +9,20 @@ Is this content relevant? (Y/N)
 n
 ************  RESULT 2  **************
 [
-title: columbia - wikipedia, the free encyclopedia
-description: columbia may refer to: contents 1 places 1.1 in north america 1.2 elsewhere 1.3 in fiction 2 companies 2.1 music and entertainment 2.2 other 3 music 4 people 5 ...
-url: http://en.wikipedia.org/wiki/columbia
-]
-Is this content relevant? (Y/N)
-n
-************  RESULT 3  **************
-[
 title: columbia university in the city of new york
 description: founded in 1754 as king's college by royal charter, it is the oldest institution of higher learning in the state of new york. located in new york city and a member of ...
 url: http://www.columbia.edu/
 ]
 Is this content relevant? (Y/N)
 y
+************  RESULT 3  **************
+[
+title: columbia - wikipedia, the free encyclopedia
+description: columbia may refer to: contents 1 places 1.1 in north america 1.2 elsewhere 1.3 in fiction 2 companies 2.1 music and entertainment 2.2 other 3 music 4 people 5 ...
+url: http://en.wikipedia.org/wiki/columbia
+]
+Is this content relevant? (Y/N)
+n
 ************  RESULT 4  **************
 [
 title: colombia - wikipedia, the free encyclopedia
@@ -57,12 +57,12 @@ Is this content relevant? (Y/N)
 y
 ************  RESULT 8  **************
 [
-title: gocolumbialions.com—official web site of columbia ...
-description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting
-url: http://www.gocolumbialions.com/
+title: columbia sc official website | events, restaurants, hotels ...
+description: find official travel information about columbia, sc, including hotels, restaurants, events, and more from the online travel resource of columbia, south carolina, the ...
+url: http://www.columbiacvb.com/
 ]
 Is this content relevant? (Y/N)
-y
+n
 ************  RESULT 9  **************
 [
 title: columbia shp - california state parks
@@ -84,86 +84,86 @@ Naive Model is updating query, iter: 0, ignore prop: true
 
 
 
-The result precision is 0.3
-query expanded by: new lions
-Search "columbia" "new" "lions"...
+The result precision is 0.2
+query expanded by: york college
+Search "columbia" "york" "college"...
 ************  RESULT 1  **************
 [
-title: columbia lions
-description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting
-url: http://www.gocolumbialions.com/
+title: columbia university in the city of new york
+description: founded in 1754 as king's college by royal charter, it is the oldest institution of higher learning in the state of new york. located in new york city and a member of ...
+url: http://www.columbia.edu/
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 2  **************
 [
-title: the new columbia lion
-description: editor's note: the author of this piece is a self-described wikipedia fanatic and claims to have read virtually every columbia-specific wikipedia entry (as well as ...
-url: http://columbialion.com/
+title: columbia college | columbia college
+description: columbia college is pleased to share the columbia college annual report 2013–2014, ... columbia university in the city of new york 208 hamilton hall, mail code 2805
+url: http://www.college.columbia.edu/
 ]
 Is this content relevant? (Y/N)
-n
+y
 ************  RESULT 3  **************
 [
-title: football - roster - columbia university athletics
-description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting
-url: http://www.gocolumbialions.com/sportselect.dbml?spid=3885
+title: employment at columbia | columbia university in the city ...
+description: opportunities at columbia. columbia university is committed to attracting, encouraging and retaining a highly qualified workforce to support our mission of excellence ...
+url: http://www.columbia.edu/content/employment-columbia.html
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 4  **************
 [
-title: the new columbia lion | the lion
-description: journalism is all about sharing what is important and delivering it in a way that is easily accessible for all readers. the lion has been a source of interesting ...
-url: http://www.columbialion.com/blog/the-new-columbia-lion/
+title: columbia university - wikipedia, the free encyclopedia
+description: columbia university in the city of new york, or simply columbia university, is an american private ivy league research university located in the morningside heights ...
+url: http://en.wikipedia.org/wiki/columbia_university
 ]
 Is this content relevant? (Y/N)
-n
+y
 ************  RESULT 5  **************
 [
-title: columbia lions - wikipedia, the free encyclopedia
-description: the columbia university lions are the collective athletic teams and their members from columbia university, an ivy league institution in new york city, united states.
-url: http://en.wikipedia.org/wiki/columbia_lions
+title: graduate school of education | teachers college columbia ...
+description: teachers college, columbia university, is the oldest and largest graduate school of education in the united states, and also perennially ranked among the nation's best.
+url: http://www.tc.columbia.edu/
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 6  **************
 [
-title: columbia lions club
-description: home of the columbia lions club in columbia, tennessee. meets every 1st and 3rd thursday.
-url: http://columbialionsclub.com/
+title: columbia college: on campus & online - associate, bachelor ...
+description: columbia college columbia college, providing adult education, distance learning, online degrees and education at more than 30 campuses across the country. get an ...
+url: http://www.ccis.edu/
 ]
 Is this content relevant? (Y/N)
 n
 ************  RESULT 7  **************
 [
-title: columbia football - lions news, scores, videos - college ...
-description: columbia lions football scores, news, schedule, players, stats, photos, rumors, and video highlights on espn.com.
-url: http://espn.go.com/college-football/team/_/id/171/columbia-lions
-]
-Is this content relevant? (Y/N)
-n
-************  RESULT 8  **************
-[
-title: columbia lion - wikicu, the columbia university wiki ...
-description: the columbia lion statue at baker field can be seen in its original location in the background of the 1947 football team photo (current location)
-url: http://www.wikicu.com/columbia_lion
+title: columbia university athletics
+description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting
+url: http://www.gocolumbialions.com/
 ]
 Is this content relevant? (Y/N)
 y
-************  RESULT 9  **************
+************  RESULT 8  **************
 [
-title: columbia lions 2014 team player roster - college football ...
-description: complete columbia lions football team roster on espn.com, including all players, positions, jersey numbers, and class breakdown.
-url: http://espn.go.com/college-football/team/roster/_/id/171/columbia-lions
+title: columbia college chicago
+description: when you attend columbia college chicago, your home is one of the most active, vibrant, forward-thinking cities in the world.
+url: http://www.colum.edu/
 ]
 Is this content relevant? (Y/N)
 n
+************  RESULT 9  **************
+[
+title: columbia university | best college | us news
+description: is columbia university the best college for you? find out at us news. see if columbia university is ranked and get info on admission, tuition, student life, and more.
+url: http://colleges.usnews.rankingsandreviews.com/best-colleges/columbia-university-2707
+]
+Is this content relevant? (Y/N)
+y
 ************  RESULT 10  **************
 [
-title: columbia university - wikipedia, the free encyclopedia
-description: columbia university in the city of new york, or simply columbia university, is an american private ivy league research university located in the morningside heights ...
-url: http://en.wikipedia.org/wiki/columbia_university
+title: columbia university medical center | discover. educate ...
+description: columbia university | a-z listing | find people | research profiles | map | rss | giving; cumc cu people. follow us on twitter view our facebook page. cumc news room ...
+url: http://www.cumc.columbia.edu/
 ]
 Is this content relevant? (Y/N)
 y
@@ -172,86 +172,86 @@ Naive Model is updating query, iter: 1, ignore prop: true
 
 
 
-The result precision is 0.5
-query expanded by: university official
-Search "columbia" "new" "lions" "university" "official"...
+The result precision is 0.8
+query expanded by: lions best
+Search "columbia" "york" "college" "lions" "best"...
 ************  RESULT 1  **************
 [
-title: columbia university - gocolumbialions.com—official web ...
-description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting
-url: http://www.gocolumbialions.com/
+title: columbia university | best college | us news
+description: see if columbia university is ranked ... the columbia lions field more than 25 ... columbia university in the city of new york encompasses more than a dozen ...
+url: http://colleges.usnews.rankingsandreviews.com/best-colleges/columbia-university-2707
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 2  **************
 [
-title: columbia university in the city of new york
-description: http://news.columbia.edu/research/3601. unlocking the puzzle of alzheimer's ... © 2015 columbia university. contact; computing; employment; visiting; accessibility;
-url: http://www.columbia.edu/
+title: columbia university athletics
+description: the official online home of the columbia lions, ... columbia university, columbia lions official ... squash team will cap the season in the nations top ...
+url: http://www.gocolumbialions.com/
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 3  **************
 [
-title: the new columbia lion
-description: ... and this is his first piece for the new lion. ... the university chaplain, and columbia psychological services. no concern is too small to seek out help.
-url: http://columbialion.com/
+title: football - roster - columbia university athletics
+description: the official online home of the columbia lions, columbia athletics, columbia university, columbia lions official merchandise, columbia lions broadcasting. columbia.edu.
+url: http://www.gocolumbialions.com/sportselect.dbml?spid=3885
 ]
 Is this content relevant? (Y/N)
-n
+y
 ************  RESULT 4  **************
 [
-title: columbia lions - wikipedia, the free encyclopedia
-description: the columbia university lions are the collective athletic teams and their members from columbia university, an ivy league institution in new york city, united states.
-url: http://en.wikipedia.org/wiki/columbia_lions
+title: columbia university apparel - shop columbia lions gear ...
+description: columbia university apparel and columbia lions merchandise at the ultimate lions ... new york giants; ... columbia university lions top of the world simple knit hat ...
+url: http://www.fanatics.com/college_columbia_university_lions
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 5  **************
 [
-title: columbia university lions jersey history | authentic jerseys
-description: ... replica, throwback, vintage, kids, adult, official columbia university lions ... columbia university in new york city is ... the teams colors are columbia ...
-url: http://www.sportsmemorabilia.com/resources/team-jerseys/columbia-university-lions.html
+title: columbia lions - wikipedia, the free encyclopedia
+description: the columbia university lions are the ... men's crew was one of columbia's best ... broadcast from baker field in new york city. other columbia lions who have ...
+url: http://en.wikipedia.org/wiki/columbia_lions
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 6  **************
 [
-title: columbia university in the city of new york official ...
-description: columbia university in the city of new york official bookstore | | faculty resources cart. access screen reader friendly version of textbook page skip ...
-url: http://www.columbia.bncollege.com/webapp/wcs/stores/servlet/bncbhomepage?storeid=10053&catalogid=10001
+title: columbia lions 2014 team player roster - college football ...
+description: new york; espn college football. shop. ... clubhouse; schedule; roster; photos; tickets; shop; columbia lions roster 2014 columbia ... college football playoff national
+url: http://espn.go.com/college-football/team/roster/_/id/171/columbia-lions
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 7  **************
 [
 title: columbia university lions gear - columbia university ...
-description: get columbia university lions ... lions /fox_columbia_university_lions/search/ new search. top ... columbia columbia university lions flanker full zip fleece ...
+description: get columbia university lions football, ... mens columbia university lions top of the world light blue simple knit hat ... '47 brand columbia lions gray vintage scrum ...
 url: http://shop.foxsports.com/fox_columbia_university_lions
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 8  **************
 [
-title: columbia lion - wikicu, the columbia university wiki ...
-description: ... of this banner can be found in the "columbia lion" subject file in the university ... ↑ the lion enters slick new era, columbia ...
-url: http://www.wikicu.com/columbia_lion
+title: columbia football - lions news, scores, videos - college ...
+description: columbia lions football scores ... new york; espn college ... the university's football program is embroiled in further controversy because of reported ...
+url: http://espn.go.com/college-football/team/_/id/171/columbia-lions
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 9  **************
 [
-title: logo | columbia university in the city of new york
-description: the logo was designed using the official university font, trajan pro, ... columbia news; commencement; courseworks; directory of classes; environmental sustainability;
-url: http://www.columbia.edu/content/logo.html
+title: lions baseball camps at columbia university
+description: dan tischler baseball camp at columbia university. ... columbia university. lions baseball camps in new york city are dedicated to ... the best possible ...
+url: http://collegebaseballcamps.com/lionsbaseball
 ]
 Is this content relevant? (Y/N)
 y
 ************  RESULT 10  **************
 [
-title: columbia university - wikipedia, the free encyclopedia
-description: columbia university in the city of new york, ... fledgling nbc broadcast a doubleheader between the columbia lions and the princeton tigers at columbia's baker ...
-url: http://en.wikipedia.org/wiki/columbia_university
+title: columbia university lions apparel - columbia fan gear ...
+description: shop columbia university lions merchandise at fansedge ... columbia columbia university lions flanker ... top of the world columbia university lions light blue ...
+url: http://www.fansedge.com/columbia_university_lions_merchandise
 ]
 Is this content relevant? (Y/N)
 y
@@ -260,7 +260,7 @@ Naive Model is updating query, iter: 2, ignore prop: true
 
 
 
-The result precision is 0.9
+The result precision is 1.0
 Naive Model has reached the precision: 0.9
 Iteration:2
 Finish!
