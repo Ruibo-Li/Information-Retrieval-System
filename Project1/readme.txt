@@ -5,11 +5,11 @@ Siyao Li (sl3766)
 b)
 Files:
 rl2733-proj1
-    - README.txt
+    - readme.txt
     - Project1
+        - RUN.jar
         - pom.xml
         - project1.iml
-        - readme.txt
         - src
             - main
                 - resourses
