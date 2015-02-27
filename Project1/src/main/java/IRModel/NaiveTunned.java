@@ -26,8 +26,6 @@ public class NaiveTunned {
         titleFactor = 1;
         precision = 0.9;
         antiProp = true;
-        File dir1 = new File (".");
-
         BufferedReader br = new BufferedReader(new FileReader("StopWords.txt"));
         propSet = new HashSet<String>();
         try {
