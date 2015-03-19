@@ -22,20 +22,9 @@ public class Extractor {
         return null;
     }
 
-    public Map<String,List<String>> getAuthor(JSONArray jsonArray){
-        return null;
-    }
-
     public Map<String,List<String>> getActor(JSONArray jsonArray){
         return null;
     }
 
-    public Map<String,List<String>> getLeague(JSONArray jsonArray){
-        return null;
-    }
-
-    public Map<String,List<String>> getSportsTeam(JSONArray jsonArray){
-        return null;
-    }
 
 }

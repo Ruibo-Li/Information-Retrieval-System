@@ -17,19 +17,7 @@ public class Extractor1 {
         return null;
     }
 
-    public Map<String,List<String>> getPerson(JSONArray jsonArray){
-        return null;
-    }
-
-    public Map<String,List<String>> getBusinessPerson(JSONArray jsonArray){
-        return null;
-    }
-
     public Map<String,List<String>> getAuthor(JSONArray jsonArray){
-        return null;
-    }
-
-    public Map<String,List<String>> getActor(JSONArray jsonArray){
         return null;
     }
 
