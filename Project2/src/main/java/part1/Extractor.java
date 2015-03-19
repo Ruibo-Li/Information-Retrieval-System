@@ -14,153 +14,109 @@ public class Extractor {
         return null;
     }
 
-    public Map<String,List<String>> getPerson(JSONObject jsonObject){
+    private static void getHelper(Map<String, List<String>>  map, JSONObject jsonObject, String path, String title){
+        if(jsonObject.has(path)) {
+            JSONObject Object  = jsonObject.getJSONObject(path);
+            if(Object.has("values")) {
+                JSONArray values = Object.getJSONArray("values");
+                List <String> list = new LinkedList <String> ();
+                for(int i=0;i<values.length();i++) {
+                    if(values.getJSONObject(i).has("text")) {
+                        String ele = values.getJSONObject(i).getString("text");
+                        list.add(ele);
+                    }
+                }
+                map.put(title,list);
+            }
+        }
+    }
+
+    public static Map<String,List<String>> getPerson(JSONObject jsonObject){
         Map result = new HashMap<String,List<String>>();
 
-        if(jsonObject.has("/type/object/name")) {
-            JSONObject nameObject  = jsonObject.getJSONObject("/type/object/name");
-            if(nameObject.has("values")) {
-                JSONArray nameValues = nameObject.getJSONArray("values");
-                List <String> nameList = new LinkedList <String> ();
-                for(int i=0;i<nameValues.length();i++) {
-                    if(nameValues.getJSONObject(i).has("text")) {
-                        String name = nameValues.getJSONObject(i).getString("text");
-                        nameList.add(name);
-                    }
-                }
-                result.put("Name",nameList);
-            }
-        }
+        getHelper(result, jsonObject, "/type/object/name", "Name");
 
-        if(jsonObject.has("/people/person/date_of_birth")) {
-            JSONObject birthdayObject  = jsonObject.getJSONObject("/people/person/date_of_birth");
-            if(birthdayObject.has("values")) {
-                JSONArray birthdayValues = birthdayObject.getJSONArray("values");
-                List <String> birthdayList = new LinkedList<String>();
-                for(int i=0;i<birthdayValues.length();i++) {
-                    if(birthdayValues.getJSONObject(i).has("text")) {
-                        String birthday = birthdayValues.getJSONObject(i).getString("text");
-                        birthdayList.add(birthday);
-                    }
-                }
-                result.put("Birthday",birthdayList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/person/date_of_birth", "Birthday");
 
-        if(jsonObject.has("/people/person/place_of_birth")) {
-            JSONObject birthPlaceObject  = jsonObject.getJSONObject("/people/person/place_of_birth");
-            if(birthPlaceObject.has("values")) {
-                JSONArray birthPlaceValues = birthPlaceObject.getJSONArray("values");
-                List <String> birthPlaceList = new LinkedList<String>();
-                for(int i=0;i<birthPlaceValues.length();i++) {
-                    if(birthPlaceValues.getJSONObject(i).has("text")) {
-                        String birthPlace = birthPlaceValues.getJSONObject(i).getString("text");
-                        birthPlaceList.add(birthPlace);
-                    }
-                }
-                result.put("PlaceOfBirth",birthPlaceList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/person/place_of_birth", "PlaceOfBirth");
 
-        if(jsonObject.has("/people/deceased_person/place_of_death")) {
-            JSONObject deathPlaceObject  = jsonObject.getJSONObject("/people/deceased_person/place_of_death");
-            if(deathPlaceObject.has("values")) {
-                List <String> deathPlaceList = new LinkedList<String>();
-                JSONArray deathPlaceValues = deathPlaceObject.getJSONArray("values");
-                for(int i=0;i<deathPlaceValues.length();i++) {
-                    if(deathPlaceValues.getJSONObject(i).has("text")) {
-                        String deathPlace = deathPlaceValues.getJSONObject(i).getString("text");
-                        deathPlaceList.add(deathPlace);
-                    }
-                }
-                result.put("PlaceOfDeath",deathPlaceList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/deceased_person/place_of_death", "PlaceOfDeath");
 
-        if(jsonObject.has("/people/deceased_person/date_of_death")) {
-            JSONObject deathDateObject  = jsonObject.getJSONObject("/people/deceased_person/date_of_death");
-            if(deathDateObject.has("values")) {
-                List <String> deathDateList = new LinkedList<String>();
-                JSONArray deathDateValues = deathDateObject.getJSONArray("values");
-                for(int i=0;i<deathDateValues.length();i++) {
-                    if(deathDateValues.getJSONObject(i).has("text")) {
-                        String deathDate = deathDateValues.getJSONObject(i).getString("text");
-                        deathDateList.add(deathDate);
-                    }
-                }
-                result.put("DateOfDeath",deathDateList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/deceased_person/date_of_death", "DateOfDirth");
 
-        if(jsonObject.has("/people/deceased_person/cause_of_death")) {
-            JSONObject deathCauseObject  = jsonObject.getJSONObject("/people/deceased_person/cause_of_death");
-            if(deathCauseObject.has("values")) {
-                List <String> deathCauseList = new LinkedList<String>();
-                JSONArray deathCauseValues = deathCauseObject.getJSONArray("values");
-                for(int i=0;i<deathCauseValues.length();i++) {
-                    if(deathCauseValues.getJSONObject(i).has("text")) {
-                        String deathCause = deathCauseValues.getJSONObject(i).getString("text");
-                        deathCauseList.add(deathCause);
-                    }
-                }
-                result.put("CauseOfDeath",deathCauseList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/deceased_person/cause_of_death", "CauseOfBirth");
 
-        if(jsonObject.has("/people/person/sibling_s")) {
-            JSONObject siblingsObject  = jsonObject.getJSONObject("/people/person/sibling_s");
-            if(siblingsObject.has("values")) {
-                List <String> siblingsList = new LinkedList<String>();
-                JSONArray siblingsValues = siblingsObject.getJSONArray("values");
-                for(int i=0;i<siblingsValues.length();i++) {
-                    if(siblingsValues.getJSONObject(i).has("text")) {
-                        String sibling = siblingsValues.getJSONObject(i).getString("text");
-                        siblingsList.add(sibling);
-                    }
-                }
-                result.put("Siblings",siblingsList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/person/sibling_s", "Siblings");
 
-        if(jsonObject.has("/people/person/spouse_s")) {
-            JSONObject spousesObject  = jsonObject.getJSONObject("/people/person/spouse_s");
-            if(spousesObject.has("values")) {
-                List <String> spousesList = new LinkedList<String>();
-                JSONArray spousesValues = spousesObject.getJSONArray("values");
-                for(int i=0;i<spousesValues.length();i++) {
-                    if(spousesValues.getJSONObject(i).has("text")) {
-                        String sibling = spousesValues.getJSONObject(i).getString("text");
-                        spousesList.add(sibling);
-                    }
-                }
-                result.put("Spouses",spousesList);
-            }
-        }
+        getHelper(result, jsonObject, "/people/person/spouse_s", "Spouses");
 
-        if(jsonObject.has("/common/topic/description")) {
-            JSONObject descriptionObject  = jsonObject.getJSONObject("/common/topic/description");
-            if(descriptionObject.has("values")) {
-                List <String> descriptionList = new LinkedList<String>();
-                JSONArray descriptionValues = descriptionObject.getJSONArray("values");
-                for(int i=0;i<descriptionValues.length();i++) {
-                    if(descriptionValues.getJSONObject(i).has("text")) {
-                        String sibling = descriptionValues.getJSONObject(i).getString("text");
-                        descriptionList.add(sibling);
-                    }
-                }
-                result.put("Description",descriptionList);
-            }
-        }
+        getHelper(result, jsonObject, "/common/topic/description", "Description");
 
         return result;
     }
 
     public Map<String,List<String>> getBusinessPerson(JSONObject jsonObject){
+        Map result = new HashMap<String,List<String>>();
+        /*
+        if(jsonObject.has("/business/board_member/leader_of")) {
+            JSONObject leadershipObject  = jsonObject.getJSONObject("/business/board_member/leader_of");
+            if(leadershipObject.has("values")) {
+                JSONArray leadershipValues = leadershipObject.getJSONArray("values");
+                List <String> leadershipList = new LinkedList <String> ();
+                for(int i=0;i<leadershipValues.length();i++) {
+                    if(leadershipValues.getJSONObject(i).has("property")) {
+
+                    }
+                }
+                result.put("leadership",leadershipList);
+            }
+        }
+        */
         return null;
     }
 
-    public Map<String,List<String>> getActor(JSONObject jsonObject){
-        return null;
+    public static Map<String,List<String>> getActor(JSONObject jsonObject){
+        Map result = new HashMap<String,List<String>>();
+        if(jsonObject.has("/film/actor/film")) {
+            JSONObject filmCharObject  = jsonObject.getJSONObject("/film/actor/film");
+            if(filmCharObject.has("values")) {
+                List <String> filmList = new LinkedList<String>();
+                List <String> charList = new LinkedList<String>();
+                JSONArray filmCharValues = filmCharObject.getJSONArray("values");
+                for(int i=0;i<filmCharValues.length();i++) {
+                    if(filmCharValues.getJSONObject(i).has("property")) {
+                        JSONObject property = filmCharValues.getJSONObject(i).getJSONObject("property");
+                        if(property.has("/film/performance/character")) {
+                            JSONObject characters = property.getJSONObject("/film/performance/character");
+                            if(characters.has("values")) {
+                                JSONArray charactersValues = characters.getJSONArray("values");
+                                for(int j=0;j<charactersValues.length();j++) {
+                                    if(charactersValues.getJSONObject(j).has("text")) {
+                                        String character = charactersValues.getJSONObject(j).getString("text");
+                                        charList.add(character);
+                                    }
+                                }
+                            }
+                        }
+                        if(property.has("/film/performance/film")) {
+                            JSONObject films = property.getJSONObject("/film/performance/film");
+                            if(films.has("values")) {
+                                JSONArray filmsValues = films.getJSONArray("values");
+                                for(int j=0;j<filmsValues.length();j++) {
+                                    if(filmsValues.getJSONObject(j).has("text")) {
+                                        String film = filmsValues.getJSONObject(j).getString("text");
+                                        filmList.add(film);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                result.put("Film",filmList);
+                result.put("Character",charList);
+            }
+        }
+        return result;
     }
 
 
