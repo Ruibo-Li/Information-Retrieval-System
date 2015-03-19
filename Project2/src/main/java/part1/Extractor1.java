@@ -1,31 +1,28 @@
 package part1;
-
-import org.json.JSONArray;
-
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import org.json.*;
 
 /**
  * Created by ruiboli on 3/18/15.
  */
 public class Extractor1 {
-    public List<String> getEntity(JSONArray jsonArray){
+    public List<String> getEntity(JSONObject jsonObject){
         return null;
     }
 
-    public Map<String,List<String>> getAttribute(JSONArray jsonArray){
+    public Map<String,List<String>> getAttribute(JSONObject jsonObject){
         return null;
     }
 
-    public Map<String,List<String>> getAuthor(JSONArray jsonArray){
+    public Map<String,List<String>> getAuthor(JSONObject jsonObject){
         return null;
     }
 
-    public Map<String,List<String>> getLeague(JSONArray jsonArray){
+    public Map<String,List<String>> getLeague(JSONObject jsonObject){
         return null;
     }
 
-    public Map<String,List<String>> getSportsTeam(JSONArray jsonArray){
+    public Map<String,List<String>> getSportsTeam(JSONObject jsonObject){
         return null;
     }
 
