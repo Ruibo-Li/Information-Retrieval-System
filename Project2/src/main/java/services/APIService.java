@@ -75,7 +75,7 @@ public class APIService {
         String serverOutput = null;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("key", APIKey));
-        httpGet.setURI(URI.create(TOPIC_URL + mid + URLEncodedUtils.format(params, "UTF-8")));
+        httpGet.setURI(URI.create(TOPIC_URL + mid + "?" + URLEncodedUtils.format(params, "UTF-8")));
         response = httpClient.execute(httpGet);
         try {
             responseEntity = response.getEntity();
@@ -87,6 +87,7 @@ public class APIService {
         }
         JSONObject jsonObject = null;
         try {
+            //System.out.println(serverOutput);
             jsonObject = new JSONObject(serverOutput);
             jsonObject = jsonObject.getJSONObject("property");
         } catch (Exception e){
