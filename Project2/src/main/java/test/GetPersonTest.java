@@ -10,9 +10,9 @@ import java.util.*;
 public class GetPersonTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("abraham lincoln");
+        JSONObject jsonObject = apiService.searchEntity("brad pitt");
         //String s = jsonObject.getJSONObject("/architecture/architectural_structure_owner/structures_owned").getString("valuetype");
-        Map <String,List<String>> result = Extractor.getPerson(jsonObject);
+        Map <String,List<String>> result = Extractor.getActor(jsonObject);
         Iterator it = result.entrySet().iterator();
         while(it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();

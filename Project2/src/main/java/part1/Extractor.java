@@ -14,65 +14,146 @@ public class Extractor {
         return null;
     }
 
-    private static void getHelper(Map<String, List<String>>  map, JSONObject jsonObject, String path, String title){
+    private static List<String> getHelper(JSONObject jsonObject, String path){
+        List <String> list = new LinkedList <String> ();
         if(jsonObject.has(path)) {
             JSONObject Object  = jsonObject.getJSONObject(path);
             if(Object.has("values")) {
                 JSONArray values = Object.getJSONArray("values");
-                List <String> list = new LinkedList <String> ();
                 for(int i=0;i<values.length();i++) {
                     if(values.getJSONObject(i).has("text")) {
                         String ele = values.getJSONObject(i).getString("text");
                         list.add(ele);
                     }
                 }
-                map.put(title,list);
             }
         }
+        return list;
     }
 
     public static Map<String,List<String>> getPerson(JSONObject jsonObject){
         Map result = new HashMap<String,List<String>>();
 
-        getHelper(result, jsonObject, "/type/object/name", "Name");
+        List <String> nameList = getHelper(jsonObject, "/type/object/name");
+        result.put("Name",nameList);
 
-        getHelper(result, jsonObject, "/people/person/date_of_birth", "Birthday");
 
-        getHelper(result, jsonObject, "/people/person/place_of_birth", "PlaceOfBirth");
+        List <String> birthdayList = getHelper(jsonObject, "/people/person/date_of_birth");
+        result.put("Birthday",birthdayList);
 
-        getHelper(result, jsonObject, "/people/deceased_person/place_of_death", "PlaceOfDeath");
+        List <String> birthPlaceList = getHelper(jsonObject, "/people/person/place_of_birth");
+        result.put("PlaceOfBirth",birthPlaceList);
 
-        getHelper(result, jsonObject, "/people/deceased_person/date_of_death", "DateOfDirth");
+        List <String> deathPlaceList = getHelper(jsonObject, "/people/deceased_person/place_of_death");
+        result.put("PlaceOfDeath",deathPlaceList);
 
-        getHelper(result, jsonObject, "/people/deceased_person/cause_of_death", "CauseOfBirth");
+        List <String> deathDateList = getHelper(jsonObject, "/people/deceased_person/date_of_death");
+        result.put("DateOfDirth",deathDateList);
 
-        getHelper(result, jsonObject, "/people/person/sibling_s", "Siblings");
+        List <String> deathCauseList = getHelper(jsonObject, "/people/deceased_person/cause_of_death");
+        result.put("CauseOfBirth",deathCauseList);
 
-        getHelper(result, jsonObject, "/people/person/spouse_s", "Spouses");
+        List <String> siblingsList = getHelper(jsonObject, "/people/person/sibling_s");
+        result.put("Siblings",siblingsList);
 
-        getHelper(result, jsonObject, "/common/topic/description", "Description");
+        List <String> spousesList = getHelper(jsonObject, "/people/person/spouse_s");
+        result.put("Spouses",spousesList);
+
+        List <String> descrepitionList = getHelper(jsonObject, "/common/topic/description");
+        result.put("Description",descrepitionList);
+
 
         return result;
     }
 
-    public Map<String,List<String>> getBusinessPerson(JSONObject jsonObject){
-        Map result = new HashMap<String,List<String>>();
-        /*
+
+    public class  BusinessmanObject{
+        List <String> From;
+        List <String> To;
+        List <String> Organization;
+        List <String> Role;
+        List <String> Title;
+        List <String> Founded;
+        public List <String> getFrom() {
+            return From;
+        }
+        public List <String> getTo() {
+            return To;
+        }
+        public List <String> getOrganization() {
+            return Organization;
+        }
+        public List <String> getRole() {
+            return Role;
+        }
+        public List <String> getTitle() {
+            return Title;
+        }
+        public List <String> getFounded() {
+            return Founded;
+        }
+    }
+
+    public Map<String,List<BusinessmanObject>> getBusinessPerson(JSONObject jsonObject){
+        Map result = new HashMap<String,List<BusinessmanObject>>();
+
         if(jsonObject.has("/business/board_member/leader_of")) {
             JSONObject leadershipObject  = jsonObject.getJSONObject("/business/board_member/leader_of");
             if(leadershipObject.has("values")) {
                 JSONArray leadershipValues = leadershipObject.getJSONArray("values");
-                List <String> leadershipList = new LinkedList <String> ();
+                List <BusinessmanObject> leadershipList = new LinkedList <BusinessmanObject> ();
                 for(int i=0;i<leadershipValues.length();i++) {
                     if(leadershipValues.getJSONObject(i).has("property")) {
+                        JSONObject leadership = leadershipValues.getJSONObject(i).getJSONObject("property");
+                        BusinessmanObject element = new BusinessmanObject();
 
+                        element.From = getHelper(leadership,"/organization/leadership/from");
+                        element.To = getHelper(leadership,"/organization/leadership/to");
+                        element.Organization = getHelper(leadership,"/organization/leadership/organization");
+                        element.Role = getHelper(leadership,"/organization/leadership/role");
+                        element.Title = getHelper(leadership,"/organization/leadership/title");
+
+                        leadershipList.add(element);
                     }
                 }
-                result.put("leadership",leadershipList);
+                result.put("Leadership",leadershipList);
             }
         }
-        */
-        return null;
+
+        if(jsonObject.has("/business/board_member/organization_board_memberships")) {
+            JSONObject boardMemberObject  = jsonObject.getJSONObject("/business/board_member/organization_board_memberships");
+            if(boardMemberObject.has("values")) {
+                JSONArray boardMemberValues = boardMemberObject.getJSONArray("values");
+                List <BusinessmanObject> boardMemberList = new LinkedList <BusinessmanObject> ();
+                for(int i=0;i<boardMemberValues.length();i++) {
+                    if(boardMemberValues.getJSONObject(i).has("property")) {
+                        JSONObject boardMember = boardMemberValues.getJSONObject(i).getJSONObject("property");
+                        BusinessmanObject element = new BusinessmanObject();
+
+                        element.From = getHelper(boardMember,"/organization/organization_board_membership/from");
+                        element.To = getHelper(boardMember,"/organization/organization_board_membership/to");
+                        element.Organization = getHelper(boardMember,"/organization/organization_board_membership/organization");
+                        element.Role = getHelper(boardMember,"/organization/organization_board_membership/role");
+                        element.Title = getHelper(boardMember,"/organization/organization_board_membership/title");
+
+                        boardMemberList.add(element);
+                    }
+                }
+                result.put("BoardMember",boardMemberList);
+            }
+        }
+
+        List <String> foundedStringList = getHelper(jsonObject,"/organization/organization_founder/organizations_founded");
+        List <BusinessmanObject> foundedList = new LinkedList <BusinessmanObject> ();
+        for(String founded:foundedStringList) {
+            BusinessmanObject businessmanObject = new BusinessmanObject();
+            businessmanObject.Founded = new LinkedList<String> ();
+            businessmanObject.Founded.add(founded);
+            foundedList.add(businessmanObject);
+        }
+        result.put("Founded",foundedList);
+
+        return result;
     }
 
     public static Map<String,List<String>> getActor(JSONObject jsonObject){
@@ -86,6 +167,9 @@ public class Extractor {
                 for(int i=0;i<filmCharValues.length();i++) {
                     if(filmCharValues.getJSONObject(i).has("property")) {
                         JSONObject property = filmCharValues.getJSONObject(i).getJSONObject("property");
+                        //charList = getHelper(property,"/film/performance/character");
+                        //filmList = getHelper(property,"/film/performance/film");
+
                         if(property.has("/film/performance/character")) {
                             JSONObject characters = property.getJSONObject("/film/performance/character");
                             if(characters.has("values")) {
