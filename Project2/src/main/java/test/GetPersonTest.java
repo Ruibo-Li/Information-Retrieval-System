@@ -12,7 +12,8 @@ public class GetPersonTest {
         APIService apiService = APIService.getInstance();
         JSONObject jsonObject = apiService.searchEntity("brad pitt");
         //String s = jsonObject.getJSONObject("/architecture/architectural_structure_owner/structures_owned").getString("valuetype");
-        Map <String,List<String>> result = Extractor.getActor(jsonObject);
+        Extractor e = new Extractor();
+        Map <String,List<String>> result = e.getActor(jsonObject);
         Iterator it = result.entrySet().iterator();
         while(it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();

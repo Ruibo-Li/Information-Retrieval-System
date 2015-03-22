@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by szeyiu on 3/18/15.
+ * Created by szeyiu on 3/21/15.
  */
-public class GetAuthorTest {
+public class GetLeagueTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("bill gates");
+        JSONObject jsonObject = apiService.searchEntity("NBA");
         Extractor e = new Extractor();
-        Map<String, List<Object>> map = e.getAuthor(jsonObject);
+        Map<String, List<Object>> map = e.getLeague(jsonObject);
         for(String k: map.keySet()){
             List<Object> lst = map.get(k);
             System.out.println("**********"+k+"**********");
