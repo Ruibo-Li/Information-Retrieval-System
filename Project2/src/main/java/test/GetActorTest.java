@@ -14,7 +14,7 @@ public class GetActorTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
         JSONObject jsonObject = apiService.searchEntity("bill gates");
-        Extractor e = new Extractor();
+        Extractor e = new Extractor("");
         Map<String, List<Object>> map = e.getPerson(jsonObject);
         for(String k: map.keySet()){
             List<Object> lst = map.get(k);

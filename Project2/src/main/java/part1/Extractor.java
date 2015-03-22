@@ -6,7 +6,71 @@ import part1.pojo.*;
  * Created by ruiboli on 3/18/15.
  */
 public class Extractor {
-    public List<String> getEntity(JSONObject jsonObject){
+    Map<String, String> pathTypeMap = new HashMap<String, String>();
+    Map<String, List<String>> typeAttrMap = new HashMap<String, List<String>>();
+    String name;
+    public Extractor(String name) {
+        pathTypeMap.put("/people/person", "Person");
+        pathTypeMap.put("/book/author", "Author");
+        pathTypeMap.put("/film/actor", "Actor");
+        pathTypeMap.put("/tv/tv_actor", "Actor");
+        pathTypeMap.put("/organization/organization_founder", "BusinessPerson");
+        pathTypeMap.put("/business/board_member", "BusinessPerson");
+        pathTypeMap.put("/sports/sports_league", "League");
+        pathTypeMap.put("/sports/sports_team", "SportsTeam");
+        pathTypeMap.put("/sports/professional_sports_team", "SportsTeam");
+        typeAttrMap.put("Person", Arrays.asList("Name", "Birthday", "PlaceOfBirth", "Death", "Siblings", "Spouses", "Description"));
+        typeAttrMap.put("Author", Arrays.asList("Book", "Book About", "Influenced", "Influenced By"));
+        typeAttrMap.put("Actor", Arrays.asList("Films"));
+        typeAttrMap.put("BusinessPerson", Arrays.asList("Leadership", "BoardMember", "Founded"));
+        typeAttrMap.put("League", Arrays.asList("Name", "Championship","Sport", "Slogan", "OfficialWebsite", "Description"));
+        typeAttrMap.put("SportsTeam", Arrays.asList("Name", "Sport", "Arena", "Championships", "Founded", "Leagues", "Location"));
+        this.name = name;
+    }
+
+    private List<String> getEntity(JSONObject jsonObject) {
+        List<String> pathList = getIDHelper(jsonObject, "/type/object/type");
+        Set<String> typeSet = new HashSet<String>();
+        for (String path : pathList) {
+            if (pathTypeMap.containsKey(path)) {
+                typeSet.add(pathTypeMap.get(path));
+            }
+        }
+        List<String> typeList = new ArrayList<String>();
+        String[] orderList = {"Person", "Author", "Actor", "BusinessPerson", "League", "SportsTeam"};
+        for (int i = 0; i < orderList.length; ++i) {
+            if (typeSet.contains(orderList[i])) {
+                typeList.add(orderList[i]);
+            }
+        }
+        return typeList;
+    }
+
+    public void printInfo(JSONObject jsonObject){
+        List<String> typeList = getEntity(jsonObject);
+        System.out.print("**********************************\n" + name + "\t");
+        for(String type: typeList) System.out.print(type+"\t");
+        System.out.println("\n"+"**********************************\n");
+        for(String type: typeList){
+            Map<String, List<Object>> map = getInfo(type, jsonObject);
+            List<String> attrList = typeAttrMap.get(type);
+            for(String attr: attrList){
+                if(!map.containsKey(attr)) continue;
+                System.out.println("***************  "+ attr + "  ***************");
+                for(Object obj: map.get(attr)){
+                    System.out.println(obj.toString());
+                }
+            }
+        }
+    }
+
+    public Map<String, List<Object>> getInfo(String type, JSONObject jsonObject){
+        if(type.equals("Person")) return getPerson(jsonObject);
+        if(type.equals("Author")) return getAuthor(jsonObject);
+        if(type.equals("Actor")) return getActor(jsonObject);
+        if(type.equals("BusinessPerson")) return getBusinessPerson(jsonObject);
+        if(type.equals("League")) return  getLeague(jsonObject);
+        if(type.equals("SportsTeam")) return getSportsTeam(jsonObject);
         return null;
     }
 
@@ -19,7 +83,6 @@ public class Extractor {
  * The following code are created by Ruibo    *
  * ********************************************
  */
-
 
     private List<String> getHelper(JSONObject jsonObject, String path){
         List <String> list = new ArrayList<String>();
@@ -39,6 +102,23 @@ public class Extractor {
         return list;
     }
 
+    private List<String> getIDHelper(JSONObject jsonObject, String path){
+        List <String> list = new ArrayList<String>();
+        if(jsonObject.has(path)) {
+            JSONObject Object  = jsonObject.getJSONObject(path);
+            if(Object.has("values")) {
+                JSONArray values = Object.getJSONArray("values");
+                for(int i=0;i<values.length();i++) {
+                    if(values.getJSONObject(i).has("id")) {
+                        String ele = values.getJSONObject(i).getString("id");
+                        list.add(ele);
+                    }
+                }
+            }
+        }
+        if(list.size()==0) list.add("");
+        return list;
+    }
 
 
     public Map<String,List<Object>> getPerson(JSONObject jsonObject){
@@ -132,53 +212,6 @@ public class Extractor {
             }
         }
         getHelperText(result, jsonObject,"/organization/organization_founder/organizations_founded" ,"Founded");
-        return result;
-    }
-
-    public Map<String,List<String>> getActor(JSONObject jsonObject){
-        Map result = new HashMap<String,List<String>>();
-        if(jsonObject.has("/film/actor/film")) {
-            JSONObject filmCharObject  = jsonObject.getJSONObject("/film/actor/film");
-            if(filmCharObject.has("values")) {
-                List <String> filmList = new LinkedList<String>();
-                List <String> charList = new LinkedList<String>();
-                JSONArray filmCharValues = filmCharObject.getJSONArray("values");
-                for(int i=0;i<filmCharValues.length();i++) {
-                    if(filmCharValues.getJSONObject(i).has("property")) {
-                        JSONObject property = filmCharValues.getJSONObject(i).getJSONObject("property");
-                        //charList = getHelper(property,"/film/performance/character");
-                        //filmList = getHelper(property,"/film/performance/film");
-
-                        if(property.has("/film/performance/character")) {
-                            JSONObject characters = property.getJSONObject("/film/performance/character");
-                            if(characters.has("values")) {
-                                JSONArray charactersValues = characters.getJSONArray("values");
-                                for(int j=0;j<charactersValues.length();j++) {
-                                    if(charactersValues.getJSONObject(j).has("text")) {
-                                        String character = charactersValues.getJSONObject(j).getString("text");
-                                        charList.add(character);
-                                    }
-                                }
-                            }
-                        }
-                        if(property.has("/film/performance/film")) {
-                            JSONObject films = property.getJSONObject("/film/performance/film");
-                            if(films.has("values")) {
-                                JSONArray filmsValues = films.getJSONArray("values");
-                                for(int j=0;j<filmsValues.length();j++) {
-                                    if(filmsValues.getJSONObject(j).has("text")) {
-                                        String film = filmsValues.getJSONObject(j).getString("text");
-                                        filmList.add(film);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                result.put("Film",filmList);
-                result.put("Character",charList);
-            }
-        }
         return result;
     }
 
@@ -298,6 +331,51 @@ public class Extractor {
         //PlayersRoster
         getPlayersRoster(map, jsonObject);
         return map;
+    }
+
+    public Map<String,List<Object>> getActor(JSONObject jsonObject) {
+        Map<String, List<Object>>  map = new HashMap<String, List<Object>>();
+        getFilms(map, jsonObject);
+        return map;
+    }
+
+    private void getFilms(Map<String, List<Object>> map, JSONObject jsonObject){
+        String path = "/film/actor/film";
+        if(jsonObject.isNull(path)) return;
+        JSONObject subObj = jsonObject.getJSONObject(path);
+        if(subObj.isNull("values")) return;
+        JSONArray prObjLst = subObj.getJSONArray("values");
+        for(int i=0; i<prObjLst.length(); ++i){
+            JSONObject prObj = prObjLst.getJSONObject(i);
+            if(prObj.isNull("property")) continue;
+            prObj = prObj.getJSONObject("property");
+            getFilmsHelper(map, prObj);
+        }
+    }
+
+    private void getFilmsHelper(Map<String, List<Object>> map, JSONObject jsonObject){
+        FilmPojo filmPojo = new FilmPojo();
+        String chPath = "/film/performance/character";
+        String filmPath = "/film/performance/film";
+        boolean hasInfo = false;
+        if(!jsonObject.isNull(chPath)){
+            JSONObject chObj = jsonObject.getJSONObject(chPath);
+            String ch = getText(chObj);
+            if(ch.length()>0) hasInfo = true;
+            filmPojo.setCharacter(ch);
+        }
+        if(!jsonObject.isNull(filmPath)){
+            JSONObject filmObj = jsonObject.getJSONObject(filmPath);
+            String fn = getText(filmObj);
+            if(fn.length()>0) hasInfo = true;
+            filmPojo.setFilmName(fn);
+        }
+        if(!hasInfo) return;
+        if(!map.containsKey("Films")){
+            map.put("Films", new ArrayList<Object>());
+        }
+        List<Object> lst = map.get("Films");
+        lst.add(filmPojo);
     }
 
     private void getPlayersRoster(Map<String, List<Object>> map, JSONObject jsonObject){

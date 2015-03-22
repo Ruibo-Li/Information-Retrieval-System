@@ -13,7 +13,7 @@ public class GetSportsTeamTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
         JSONObject jsonObject = apiService.searchEntity("NY Knicks");
-        Extractor e = new Extractor();
+        Extractor e = new Extractor("");
         Map<String, List<Object>> map = e.getSportsTeam(jsonObject);
         for(String k: map.keySet()){
             List<Object> lst = map.get(k);

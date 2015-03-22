@@ -38,7 +38,7 @@ public class APIService {
         return apiService;
     }
 
-    private String searchMid(String keyword) throws Exception{
+    public List<String> searchMid(String keyword) throws Exception{
         HttpResponse response;
         HttpEntity responseEntity = null;
         HttpGet httpGet = new HttpGet();
@@ -57,18 +57,24 @@ public class APIService {
             httpGet.releaseConnection();
         }
         String mid = "";
+        String name = "";
         try {
             JSONObject jsonObject = new JSONObject(serverOutput);
             JSONArray jsonArray = jsonObject.getJSONArray("result");
+            if(jsonArray.length()<=0) return null;
             jsonObject = jsonArray.getJSONObject(0);
             mid = jsonObject.getString("mid");
+            name = jsonObject.getString("name");
         } catch (Exception e){
             e.printStackTrace();
         }
-        return mid;
+        List<String> rst = new ArrayList<String>();
+        rst.add(name);
+        rst.add(mid);
+        return rst;
     }
 
-    private JSONObject topic(String mid) throws Exception{
+    public JSONObject topic(String mid) throws Exception{
         HttpResponse response;
         HttpEntity responseEntity = null;
         HttpGet httpGet = new HttpGet();
@@ -97,8 +103,9 @@ public class APIService {
     }
 
     public JSONObject searchEntity(String keyword) throws Exception{
-        String mid = searchMid(keyword);
-        return topic(mid);
+        List<String> nameMid = searchMid(keyword);
+        if(nameMid==null) return null;
+        return topic(nameMid.get(1));
     }
 
 }
