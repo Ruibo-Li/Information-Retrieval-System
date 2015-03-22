@@ -9,9 +9,33 @@ public class BusinessmanPojo{
     public String Organization;
     public String Role;
     public String Title;
+
+    private int orgW = 20;
+    private int rolW = 20;
+    private int titW = 20;
+    private int fromToW = 19;
+
     @Override
     public String toString(){
-        return From + "\t"+To+"\t"+Organization+"\t"+Role+"\t"+Title;
+        String nameString = format(Organization, orgW-1);
+        String positionString = format(Role, rolW-1);
+        String numberString = format(Title, titW-1);
+        String fromToString = format(From+"/"+To, fromToW-1);
+        return "|"+nameString+"|"+positionString+"|"+numberString+"|"+fromToString+"|";
+    }
+
+    private String format(String s, int width){
+        StringBuilder builder = new StringBuilder(s);
+        if(s.length()<=width){
+            int dif = width - s.length();
+            for(int i=0; i<dif; ++i){
+                builder.append(" ");
+            }
+        } else{
+            builder.delete(width-3, builder.length());
+            builder.append("...");
+        }
+        return builder.toString();
     }
 
     public String getFrom() {

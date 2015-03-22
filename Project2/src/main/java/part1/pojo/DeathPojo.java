@@ -7,10 +7,33 @@ public class DeathPojo{
     String place;
     String date;
     String cause;
+    private int pW=27;
+    private int dW=26;
+    private int cW=26;
+
     @Override
     public String toString(){
-        return place+"\t"+date+"\t"+cause;
+        String nameString = format(place, pW-1);
+        String positionString = format(date, dW-1);
+        String fromToString = format(cause, cW-1);
+        return "|"+nameString+"|"+positionString+"|"+fromToString+"|";
     }
+
+    private String format(String s, int width){
+        StringBuilder builder = new StringBuilder(s);
+        if(s.length()<=width){
+            int dif = width - s.length();
+            for(int i=0; i<dif; ++i){
+                builder.append(" ");
+            }
+        } else{
+            builder.delete(width-3, builder.length());
+            builder.append("...");
+        }
+        return builder.toString();
+    }
+
+
     public String getPlace() {
         return place;
     }

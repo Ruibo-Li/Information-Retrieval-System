@@ -47,8 +47,8 @@ public class Extractor {
         getHelperText(result, jsonObject, "/type/object/name", "Name");
         getHelperText(result, jsonObject, "/people/person/date_of_birth", "Birthday");
         getHelperText(result, jsonObject, "/people/person/place_of_birth", "PlaceOfBirth");
-        getHelperText(result, jsonObject, "/people/person/sibling_s", "Siblings");
-        getHelperText(result, jsonObject, "/people/person/spouse_s", "Spouses");
+        getHelperDeep(result, jsonObject, "/people/person/sibling_s", "/people/sibling_relationship/sibling", "Siblings");
+        getHelperDeep(result, jsonObject, "/people/person/spouse_s", "/people/marriage/spouse", "Spouses");
         getHelperValue(result, jsonObject, "/common/topic/description", "Description");
         DeathPojo deathPojo = new DeathPojo();
         List <String> deathPlaceList = getHelper(jsonObject, "/people/deceased_person/place_of_death");
