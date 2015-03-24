@@ -22,12 +22,39 @@ public class APIService {
     private String APIKey = "AIzaSyBvdMWKakXD-QBUN4P7c0obKSfGlQQeoxY";
     private String QUERY_URL = "https://www.googleapis.com/freebase/v1/search";
     private String TOPIC_URL = "https://www.googleapis.com/freebase/v1/topic";
+    private String MQL_URL = "https://www.googleapis.com/freebase/v1/mqlread";
 
     private APIService(String APIKey){
         this.APIKey = APIKey;
         httpClient = HttpClients.custom()
                 .setConnectionManager(new PoolingHttpClientConnectionManager())
                 .build();
+    }
+    public JSONObject MQLread (String query) throws Exception{
+        HttpResponse response;
+        HttpEntity responseEntity = null;
+        HttpGet httpGet = new HttpGet();
+        String serverOutput = null;
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("query", query));
+        params.add(new BasicNameValuePair("key", APIKey));
+        httpGet.setURI(URI.create(MQL_URL + "?" + URLEncodedUtils.format(params, "UTF-8")));
+        response = httpClient.execute(httpGet);
+        try {
+            responseEntity = response.getEntity();
+            if (responseEntity != null)
+                serverOutput = EntityUtils.toString(responseEntity);
+        } finally {
+            EntityUtils.consume(responseEntity);
+            httpGet.releaseConnection();
+        }
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(serverOutput);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
     public static APIService getInstanceWithKey(String APIKey){
         if(apiService == null) apiService = new APIService(APIKey);
@@ -107,5 +134,6 @@ public class APIService {
         if(nameMid==null) return null;
         return topic(nameMid.get(1));
     }
+
 
 }
