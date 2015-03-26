@@ -23,8 +23,8 @@ public class Extractor {
         typeAttrMap.put("Author", Arrays.asList("Book", "Book About", "Influenced", "Influenced By"));
         typeAttrMap.put("Actor", Arrays.asList("Films"));
         typeAttrMap.put("BusinessPerson", Arrays.asList("Leadership", "BoardMember", "Founded"));
-        typeAttrMap.put("League", Arrays.asList("Name", "Championship","Sport", "Slogan", "OfficialWebsite", "Description"));
-        typeAttrMap.put("SportsTeam", Arrays.asList("Name", "Sport", "Arena", "Championships", "Founded", "Leagues", "Location"));
+        typeAttrMap.put("League", Arrays.asList("Name", "Championship","Sport", "Slogan", "OfficialWebsite", "Description", "Teams"));
+        typeAttrMap.put("SportsTeam", Arrays.asList("Name", "Sport", "Arena", "Championships", "Founded", "Leagues", "Location", "Coaches", "PlayersRoster"));
         this.name = name;
     }
 
@@ -46,21 +46,103 @@ public class Extractor {
         return typeList;
     }
 
-    public void printInfo(JSONObject jsonObject){
+    public boolean printInfo(JSONObject jsonObject){
+        boolean hasInfo = false;
         List<String> typeList = getEntity(jsonObject);
-        System.out.print("**********************************\n" + name + "\t");
-        for(String type: typeList) System.out.print(type+"\t");
-        System.out.println("\n"+"**********************************\n");
+        if(typeList.size()<=0) {
+            return false;
+        }
+        String nameHead = name+" (";
+        for(String type: typeList) nameHead+=" "+type;
+        nameHead+=" )";
+        titlePrint(nameHead);
         for(String type: typeList){
             Map<String, List<Object>> map = getInfo(type, jsonObject);
             List<String> attrList = typeAttrMap.get(type);
             for(String attr: attrList){
                 if(!map.containsKey(attr)) continue;
-                System.out.println("***************  "+ attr + "  ***************");
+                titlePrint(attr);
+                hasInfo = true;
                 for(Object obj: map.get(attr)){
-                    System.out.println(obj.toString());
+                    formatPrint(obj.toString(), '|');
                 }
             }
+        }
+        printSplit();
+        return hasInfo;
+    }
+
+    private void printSplit(){
+        int width = 80;
+        System.out.print('|');
+        for(int i=0; i<width-2; ++i) System.out.print('-');
+        System.out.println('|');
+    }
+    private void printTableHead(String attr){
+        int width = 80;
+        if(attr.equals("BoardMember")||attr.equals("Leadership")){
+            BusinessmanPojo businessmanPojo = new BusinessmanPojo();
+            businessmanPojo.setOrganization("Organization");
+            businessmanPojo.setRole("Role");
+            businessmanPojo.setFrom("From");
+            businessmanPojo.setTo("To");
+            businessmanPojo.setTitle("Title");
+            formatPrint(businessmanPojo.toString(), '|');
+            printSplit();
+        } else if(attr.equals("Death")){
+            DeathPojo deathPojo = new DeathPojo();
+            deathPojo.setCause("Cause");
+            deathPojo.setDate("Date");
+            deathPojo.setPlace("Place");
+            formatPrint(deathPojo.toString(),'|');
+            printSplit();
+        } else if(attr.equals("Films")){
+            FilmPojo filmPojo = new FilmPojo();
+            filmPojo.setCharacter("Character");
+            filmPojo.setFilmName("Film Name");
+            formatPrint(filmPojo.toString(),'|');
+            printSplit();
+        } else if(attr.equals("PlayersRoster")||attr.equals("Coaches")){
+            CoachesPojo coachesPojo = new CoachesPojo();
+            coachesPojo.setFrom("From");
+            coachesPojo.setName("Name");
+            coachesPojo.setPosition("Position");
+            coachesPojo.setTo("To");
+            formatPrint(coachesPojo.toString(), '|');
+            printSplit();
+        }
+    }
+
+    private void titlePrint(String s){
+        int width = 80;
+        printSplit();
+        formatPrint("\n# " + s.toUpperCase() + "\n\n", '|');
+        printSplit();
+        printTableHead(s);
+    }
+
+    private void formatPrint(String s, char symbol){
+        int width = 80;
+        int strWidth = width - 2;
+        int ptr0 = 0;
+        while(ptr0 < s.length()) {
+            System.out.print(symbol);
+            int ptr1 = Math.min(ptr0 + strWidth, s.length());
+            String line = s.substring(ptr0, ptr1);
+            int returnIdx = line.indexOf('\n');
+            if(returnIdx >= 0){
+                ptr1 = ptr0 + returnIdx;
+                line = s.substring(ptr0, ptr1);
+            }
+            int space = strWidth - line.length();
+
+            System.out.print(line);
+            for(int i=0; i<space; ++i){
+                System.out.print(" ");
+            }
+            System.out.println(symbol);
+            ptr0 = ptr1;
+            if(returnIdx >= 0) ptr0++;
         }
     }
 

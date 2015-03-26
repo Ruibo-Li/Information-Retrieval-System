@@ -4,8 +4,8 @@ package part1.pojo;
  * Created by szeyiu on 3/22/15.
  */
 public class FilmPojo {
-    String character;
-    String filmName;
+    String character="";
+    String filmName="";
 
     int cW = 39;
     int fW = 40;
@@ -14,7 +14,7 @@ public class FilmPojo {
         String nameString = format(filmName, fW-1);
         String chString = format(character, cW-1);
 
-        return "|"+nameString+"|"+chString+"|";
+        return nameString+"|"+chString;
     }
 
     private String format(String s, int width){

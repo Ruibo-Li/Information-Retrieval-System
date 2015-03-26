@@ -13,7 +13,7 @@ import java.util.Map;
 public class GetActorTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("bill gates");
+        JSONObject jsonObject = apiService.searchEntity("bill gates",0);
         Extractor e = new Extractor("");
         Map<String, List<Object>> map = e.getPerson(jsonObject);
         for(String k: map.keySet()){

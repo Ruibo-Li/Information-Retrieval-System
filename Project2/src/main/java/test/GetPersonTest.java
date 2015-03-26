@@ -10,7 +10,7 @@ import java.util.*;
 public class GetPersonTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("brad pitt");
+        JSONObject jsonObject = apiService.searchEntity("brad pitt",0);
         //String s = jsonObject.getJSONObject("/architecture/architectural_structure_owner/structures_owned").getString("valuetype");
         Extractor e = new Extractor("");
         Map <String,List<Object>> result = e.getActor(jsonObject);

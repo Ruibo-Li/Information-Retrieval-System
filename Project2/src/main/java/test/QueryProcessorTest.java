@@ -8,9 +8,9 @@ import java.util.*;
  */
 public class QueryProcessorTest {
     public static void main(String[] args) throws Exception {
-        QueryProcessor queryProcessor = new QueryProcessor();
-        List<String> result = queryProcessor.getBusineesLeader("Who Created Microsoft?");
-        List<String> authorResult = queryProcessor.getBookAuthor("Who Created Microsoft?");
+        QueryProcessor queryProcessor = new QueryProcessor("");
+        List<String> result = queryProcessor.getBusineesLeader("who created microsoft");
+        List<String> authorResult = queryProcessor.getBookAuthor("who created microsoft");
         result.addAll(authorResult);
         Collections.sort(result);
         //List<String> result = queryProcessor.getBookAuthor("Who Created Lord of the Rings?");

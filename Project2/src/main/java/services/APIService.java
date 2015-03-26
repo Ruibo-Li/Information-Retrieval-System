@@ -65,7 +65,7 @@ public class APIService {
         return apiService;
     }
 
-    public List<String> searchMid(String keyword) throws Exception{
+    public List<String> searchMid(String keyword, int index) throws Exception{
         HttpResponse response;
         HttpEntity responseEntity = null;
         HttpGet httpGet = new HttpGet();
@@ -88,8 +88,8 @@ public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(serverOutput);
             JSONArray jsonArray = jsonObject.getJSONArray("result");
-            if(jsonArray.length()<=0) return null;
-            jsonObject = jsonArray.getJSONObject(0);
+            if(jsonArray.length()<=index) return null;
+            jsonObject = jsonArray.getJSONObject(index);
             mid = jsonObject.getString("mid");
             name = jsonObject.getString("name");
         } catch (Exception e){
@@ -129,8 +129,8 @@ public class APIService {
         return jsonObject;
     }
 
-    public JSONObject searchEntity(String keyword) throws Exception{
-        List<String> nameMid = searchMid(keyword);
+    public JSONObject searchEntity(String keyword, int idx) throws Exception{
+        List<String> nameMid = searchMid(keyword, idx);
         if(nameMid==null) return null;
         return topic(nameMid.get(1));
     }

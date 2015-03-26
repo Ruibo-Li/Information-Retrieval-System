@@ -8,10 +8,16 @@ import java.util.*;
  * Created by ruiboli on 3/23/15.
  */
 public class QueryProcessor {
+    APIService apiService;
+
+    public QueryProcessor(String key){
+        if(key==null || key.equals("")) apiService = APIService.getInstance();
+        else apiService = APIService.getInstanceWithKey(key);
+    }
+
     public List<String> getBusineesLeader(String question) throws Exception{
         List<String> result = new LinkedList<String>();
-        String production = question.substring(12,question.length());
-        APIService apiService = APIService.getInstance();
+        String production = question.substring(12, question.length());
 
         String query = "[{\"/organization/organization_founder/organizations_founded\":[{\"a:name\":null,\"name~=\":\""
         + production
@@ -41,8 +47,7 @@ public class QueryProcessor {
     }
     public List<String> getBookAuthor(String question) throws Exception{
         List<String> result = new LinkedList<String>();
-        String production = question.substring(12,question.length());
-        APIService apiService = APIService.getInstance();
+        String production = question.substring(12, question.length());
 
         String query = "[{\"/book/author/works_written\":[{\"a:name\":null,\"name~=\":\""
                 + production

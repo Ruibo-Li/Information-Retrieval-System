@@ -19,7 +19,7 @@ public class CoachesPojo {
         String nameString = format(name, nameWidth-1);
         String positionString = format(position, positionWidth-1);
         String fromToString = format(from+"/"+to, fromToWidth-1);
-        return "|"+nameString+"|"+positionString+"|"+fromToString+"|";
+        return nameString+"|"+positionString+"|"+fromToString;
     }
 
     private String format(String s, int width){

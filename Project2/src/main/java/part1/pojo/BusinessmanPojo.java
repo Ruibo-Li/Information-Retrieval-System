@@ -4,11 +4,11 @@ package part1.pojo;
  * Created by szeyiu on 3/21/15.
  */
 public class BusinessmanPojo{
-    public String From;
-    public String To;
-    public String Organization;
-    public String Role;
-    public String Title;
+    public String From="";
+    public String To="";
+    public String Organization="";
+    public String Role="";
+    public String Title="";
 
     private int orgW = 20;
     private int rolW = 20;
@@ -21,7 +21,7 @@ public class BusinessmanPojo{
         String positionString = format(Role, rolW-1);
         String numberString = format(Title, titW-1);
         String fromToString = format(From+"/"+To, fromToW-1);
-        return "|"+nameString+"|"+positionString+"|"+numberString+"|"+fromToString+"|";
+        return nameString+"|"+positionString+"|"+numberString+"|"+fromToString;
     }
 
     private String format(String s, int width){

@@ -21,7 +21,7 @@ public class PlayersRosterPojo {
         String positionString = format(position, positionWidth-1);
         String numberString = format(number, numberWidth-1);
         String fromToString = format(from+"/"+to, fromToWidth-1);
-        return "|"+nameString+"|"+positionString+"|"+numberString+"|"+fromToString+"|";
+        return nameString+"|"+positionString+"|"+numberString+"|"+fromToString;
     }
 
     private String format(String s, int width){

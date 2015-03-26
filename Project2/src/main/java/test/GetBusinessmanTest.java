@@ -11,7 +11,7 @@ import java.util.*;
 public class GetBusinessmanTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("bill gates");
+        JSONObject jsonObject = apiService.searchEntity("bill gates",0);
         Extractor e = new Extractor("");
         //String s = jsonObject.getJSONObject("/architecture/architectural_structure_owner/structures_owned").getString("valuetype");
         Map <String,List<Object>> result = e.getBusinessPerson(jsonObject);

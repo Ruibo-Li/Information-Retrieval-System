@@ -13,7 +13,7 @@ import java.util.Map;
 public class GetLeagueTest {
     public static void main(String[] args) throws Exception{
         APIService apiService = APIService.getInstance();
-        JSONObject jsonObject = apiService.searchEntity("NBA");
+        JSONObject jsonObject = apiService.searchEntity("NBA",0);
         Extractor e = new Extractor("");
         Map<String, List<Object>> map = e.getLeague(jsonObject);
         for(String k: map.keySet()){

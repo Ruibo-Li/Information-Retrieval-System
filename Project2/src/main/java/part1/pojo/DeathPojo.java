@@ -4,9 +4,9 @@ package part1.pojo;
  * Created by szeyiu on 3/21/15.
  */
 public class DeathPojo{
-    String place;
-    String date;
-    String cause;
+    String place="";
+    String date="";
+    String cause="";
     private int pW=27;
     private int dW=26;
     private int cW=26;
@@ -16,7 +16,7 @@ public class DeathPojo{
         String nameString = format(place, pW-1);
         String positionString = format(date, dW-1);
         String fromToString = format(cause, cW-1);
-        return "|"+nameString+"|"+positionString+"|"+fromToString+"|";
+        return nameString+"|"+positionString+"|"+fromToString;
     }
 
     private String format(String s, int width){
