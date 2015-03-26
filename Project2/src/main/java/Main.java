@@ -40,6 +40,11 @@ public class Main {
             }
         }
 
+        if(key==null || key.equals("")){
+            System.out.println("Please indicate the key!");
+            return;
+        }
+
         if(cmdMode){
             Date date = new Date();
             Scanner scanner = new Scanner(System.in);
@@ -64,6 +69,10 @@ public class Main {
                 Driver.part2(key,q);
             }
         } else {
+            if(fileName==null||fileName.equals("")){
+                System.out.println("Please indicate the file!");
+                return;
+            }
             File file = new File(fileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             q = reader.readLine();
