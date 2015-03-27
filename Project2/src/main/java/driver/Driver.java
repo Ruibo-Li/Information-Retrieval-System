@@ -46,7 +46,12 @@ public class Driver {
         result.addAll(authorResult);
         Collections.sort(result);
         //List<String> result = queryProcessor.getBookAuthor("Who Created Lord of the Rings?");
-        for(String sentence:result)
-            System.out.println(sentence);
+        for(int i=0;i<result.size();i++) {
+            StringBuffer sb = new StringBuffer();
+            sb.append(i+1);
+            sb.append(". ");
+            sb.append(result.get(i));
+            System.out.println(sb.toString());
+        }
     }
 }

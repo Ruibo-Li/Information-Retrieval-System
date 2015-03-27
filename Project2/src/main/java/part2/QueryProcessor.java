@@ -36,8 +36,9 @@ public class QueryProcessor {
                     if(k == organizationsArray.length()-1)
                         resultString.append(" and");
                 }
-                resultString.append(" ");
+                resultString.append(" <");
                 resultString.append(organizationsArray.getJSONObject(k).getString("a:name"));
+                resultString.append(">");
             }
             resultString.append(".");
             result.add(resultString.toString());
@@ -66,8 +67,9 @@ public class QueryProcessor {
                     if(k == booksArray.length()-1)
                         resultString.append(" and");
                 }
-                resultString.append(" ");
+                resultString.append(" <");
                 resultString.append(booksArray.getJSONObject(k).getString("a:name"));
+                resultString.append(">");
             }
             resultString.append(".");
             result.add(resultString.toString());
