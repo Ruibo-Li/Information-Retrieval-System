@@ -6,7 +6,6 @@ import part2.QueryProcessor;
 import services.APIService;
 
 import java.util.*;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by szeyiu on 3/26/15.
@@ -111,7 +110,6 @@ public class Driver {
         result.addAll(authorResult);
         Collections.sort(result,new Comp());
 
-        //List<String> result = queryProcessor.getBookAuthor("Who Created Lord of the Rings?");
         if(tableprint){
             System.out.println(line);
             printTableQuestion(q, line);
