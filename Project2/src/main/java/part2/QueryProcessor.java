@@ -29,24 +29,7 @@ public class QueryProcessor {
             List <String> resultlist = new LinkedList<String>();
             resultlist.add(item.getString("name"));
             resultlist.add("BusinessPerson");
-            //StringBuilder resultString = new StringBuilder();
-            //resultString.append(item.getString("name"));
-            //resultString.append(" (as BusinessPerson) created");
             JSONArray organizationsArray = item.getJSONArray("/organization/organization_founder/organizations_founded");
-            /*
-            for(int k=0;k<organizationsArray.length();k++) {
-                if(k>0) {
-                    resultString.append(",");
-                    if(k == organizationsArray.length()-1)
-                        resultString.append(" and");
-                }
-                resultString.append(" <");
-                resultString.append(organizationsArray.getJSONObject(k).getString("a:name"));
-                resultString.append(">");
-            }
-            resultString.append(".");
-            result.add(resultString.toString());
-            */
             for(int k=0;k<organizationsArray.length();k++)
                 resultlist.add(organizationsArray.getJSONObject(k).getString("a:name"));
             result.add(resultlist);
@@ -68,24 +51,7 @@ public class QueryProcessor {
             List <String> resultlist = new LinkedList<String>();
             resultlist.add(item.getString("name"));
             resultlist.add("Author");
-            //StringBuilder resultString = new StringBuilder();
-            //resultString.append(item.getString("name"));
-            //resultString.append(" (as Author) created");
             JSONArray booksArray = item.getJSONArray("/book/author/works_written");
-            /*
-            for(int k=0;k<booksArray.length();k++) {
-                if(k>0) {
-                    resultString.append(",");
-                    if(k == booksArray.length()-1)
-                        resultString.append(" and");
-                }
-                resultString.append(" <");
-                resultString.append(booksArray.getJSONObject(k).getString("a:name"));
-                resultString.append(">");
-            }
-            resultString.append(".");
-            result.add(resultString.toString());
-            */
             for(int k=0;k<booksArray.length();k++)
                 resultlist.add(booksArray.getJSONObject(k).getString("a:name"));
             result.add(resultlist);
