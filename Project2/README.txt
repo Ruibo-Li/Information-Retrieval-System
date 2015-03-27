@@ -33,9 +33,13 @@ rl2733-proj2
 c)
 Our project is built as a maven project. To run the program, type the following command under the directory rl2733-proj2/Project2/:
 $ mvn clean package
-$ java -jar ./target/project1-1.0-SNAPSHOT-jar-with-dependencies.jar <bing account key> <precision> <query>
+$ java -jar ./target/project2-1.0-SNAPSHOT-jar-with-dependencies.jar -key <Freebase API key> -q <query> -t <infobox|question>
+or
+$ java -jar ./target/project2-1.0-SNAPSHOT-jar-with-dependencies.jar -key <Freebase API key> -f <file of queries> -t <infobox|question>
+or
+$ java -jar ./target/project2-1.0-SNAPSHOT-jar-with-dependencies.jar -key <Freebase API key>
 
-Note: "mvn clean package" will download necessary plugin and libraries, which might take *a few minutes*. After it says BUILD SUCCESS, jar project1-1.0-SNAPSHOT-jar-with-dependencies.jar will appear in the rl2733-proj1/Project1/target/ directory. Then run the jar file with parameters. If there is some problem when building the project, please use the back-up jar RUN.jar, which is generated in clic by ourselves.
+Note: "mvn clean package" will download necessary plugin and libraries, which might take *a few minutes*. After it says BUILD SUCCESS, jar project2-1.0-SNAPSHOT-jar-with-dependencies.jar will appear in the rl2733-proj2/Project2/target/ directory. Then run the jar file with parameters. If there is some problem when building the project, please use the back-up jar RUN.jar, which is generated in clic by ourselves.
 
 d)
 Besides Main.java, the source code of our implementation consists of 4 package: driver, part1, part2 and services.
