@@ -1,0 +1,96 @@
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# MIAMI HEAT ( SPORTSTEAM )                                                   |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# NAME                                                                        |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|Miami Heat                                                                    |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# SPORT                                                                       |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|Basketball                                                                    |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# ARENA                                                                       |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|American Airlines Arena                                                       |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# CHAMPIONSHIPS                                                               |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|2006 NBA Finals                                                               |
+|2012 NBA Finals                                                               |
+|2013 NBA Finals                                                               |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# FOUNDED                                                                     |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|1988                                                                          |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# LEAGUES                                                                     |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|National Basketball Association                                               |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# LOCATION                                                                    |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|Miami                                                                         |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# COACHES                                                                     |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|Name                      |Position                 |From/To                  |
+|------------------------------------------------------------------------------|
+|Erik Spoelstra            |Head coach               |2008-04/                 |
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# PLAYERSROSTER                                                               |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|Name                      |Position                 |From/To                  |
+|------------------------------------------------------------------------------|
+|Shaquille O'Neal   |Center                 |32            |2004-07-14/2008-02 |
+|Earl Barron        |                       |              |2005/2008          |
+|Michael Beasley    |Small forward, Power...|30            |2008-06-26/2010-...|
+|Dorell Wright      |                       |              |2004/2010-07-13    |
+|Jamaal Magloire    |                       |              |2008-08-30/2011-...|
+|Carlos Arroyo      |                       |              |2009-10-11/2011-...|
+|Quentin Richardson |                       |              |2009/2010-07-13    |
+|Shavlik Randolph   |Power forward          |42            |2009/2010          |
+|Yakhouba Diawara   |                       |              |2008-08-07/2010-07 |
+|Ronny Turiaf       |                       |              |2012-03-21/2012-...|
+|------------------------------------------------------------------------------|
+|                                                                              |
+|# DESCRIPTION                                                                 |
+|                                                                              |
+|------------------------------------------------------------------------------|
+|The Miami Heat are an American professional basketball team based in Miami, Fl|
+|orida. The team is a member of the Southeast Division in the Eastern Conferenc|
+|e of the National Basketball Association. They play their home games at the Am|
+|erican Airlines Arena in Downtown Miami. The team owner is Micky Arison, who a|
+|lso owns cruise-ship giant Carnival Corporation. The team president and de fac|
+|to general manager is Pat Riley, and the head coach is Erik Spoelstra. The mas|
+|cot of the team is Burnie, an anthropomorphic fireball.                       |
+|Formed in 1988 as one of the NBA's four expansion franchises, the Heat have wo|
+|n three league championships, five conference titles and 11 division titles. F|
+|rom February 3 to March 27, 2013, the Heat won 27 games in a row, the second-l|
+|ongest streak in NBA history. In 2013, Forbes valued the Heat at $625 million,|
+| sixth-most-valuable among NBA franchises.                                    |
+|The Heat are not related to the Miami Floridians, an ABA team in the early 197|
+|0s, although the Heat have occasionally paid tribute to the older franchise by|
+| wearing a replica version of the Floridians' uniforms for the NBA's "Hardwood|
+| Classics Nights" during the 2005–06 and 2011–12 seasons.                     |
+|------------------------------------------------------------------------------|
