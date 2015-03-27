@@ -58,7 +58,7 @@ public class Main {
                 if(q.equals("")) continue;
                 isPart1 = !q.toLowerCase().matches("who created .+");
                 if(isPart1) Driver.part1(key, q);
-                else Driver.part2(key, q);
+                else Driver.part2(key, q, true);
             }
         }
 
@@ -66,7 +66,7 @@ public class Main {
             if(isPart1){
                 Driver.part1(key,q);
             } else if(isPart2){
-                Driver.part2(key,q);
+                Driver.part2(key, q, false);
             }
         } else {
             if(fileName==null||fileName.equals("")){
@@ -83,7 +83,7 @@ public class Main {
                 }
                 System.out.println("\n\nQuery Question: "+q+"\n\n");
                 if (isPart1) Driver.part1(key, q);
-                else if(isPart2) Driver.part2(key, q);
+                else if(isPart2) Driver.part2(key, q, false);
                 q = reader.readLine();
             }
         }

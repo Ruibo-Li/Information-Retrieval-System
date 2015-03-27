@@ -15,8 +15,8 @@ public class QueryProcessor {
         else apiService = APIService.getInstanceWithKey(key);
     }
 
-    public List<String> getBusineesLeader(String question) throws Exception{
-        List<String> result = new LinkedList<String>();
+    public List<List<String>> getBusinessLeader(String question) throws Exception{
+        List<List<String>> result = new LinkedList<List<String>>();
         String production = question.substring(12, question.length());
 
         String query = "[{\"/organization/organization_founder/organizations_founded\":[{\"a:name\":null,\"name~=\":\""
@@ -26,10 +26,14 @@ public class QueryProcessor {
         JSONArray results = queryResult.getJSONArray("result");
         for(int j=0;j<results.length();j++) {
             JSONObject item = results.getJSONObject(j);
-            StringBuilder resultString = new StringBuilder();
-            resultString.append(item.getString("name"));
-            resultString.append(" (as BusinessPerson) created");
+            List <String> resultlist = new LinkedList<String>();
+            resultlist.add(item.getString("name"));
+            resultlist.add("BusinessPerson");
+            //StringBuilder resultString = new StringBuilder();
+            //resultString.append(item.getString("name"));
+            //resultString.append(" (as BusinessPerson) created");
             JSONArray organizationsArray = item.getJSONArray("/organization/organization_founder/organizations_founded");
+            /*
             for(int k=0;k<organizationsArray.length();k++) {
                 if(k>0) {
                     resultString.append(",");
@@ -42,12 +46,16 @@ public class QueryProcessor {
             }
             resultString.append(".");
             result.add(resultString.toString());
+            */
+            for(int k=0;k<organizationsArray.length();k++)
+                resultlist.add(organizationsArray.getJSONObject(k).getString("a:name"));
+            result.add(resultlist);
         }
 
         return result;
     }
-    public List<String> getBookAuthor(String question) throws Exception{
-        List<String> result = new LinkedList<String>();
+    public List<List<String>> getBookAuthor(String question) throws Exception{
+        List<List<String>> result = new LinkedList<List<String>>();
         String production = question.substring(12, question.length());
 
         String query = "[{\"/book/author/works_written\":[{\"a:name\":null,\"name~=\":\""
@@ -57,10 +65,14 @@ public class QueryProcessor {
         JSONArray results = queryResult.getJSONArray("result");
         for(int j=0;j<results.length();j++) {
             JSONObject item = results.getJSONObject(j);
-            StringBuilder resultString = new StringBuilder();
-            resultString.append(item.getString("name"));
-            resultString.append(" (as Author) created");
+            List <String> resultlist = new LinkedList<String>();
+            resultlist.add(item.getString("name"));
+            resultlist.add("Author");
+            //StringBuilder resultString = new StringBuilder();
+            //resultString.append(item.getString("name"));
+            //resultString.append(" (as Author) created");
             JSONArray booksArray = item.getJSONArray("/book/author/works_written");
+            /*
             for(int k=0;k<booksArray.length();k++) {
                 if(k>0) {
                     resultString.append(",");
@@ -73,6 +85,10 @@ public class QueryProcessor {
             }
             resultString.append(".");
             result.add(resultString.toString());
+            */
+            for(int k=0;k<booksArray.length();k++)
+                resultlist.add(booksArray.getJSONObject(k).getString("a:name"));
+            result.add(resultlist);
         }
 
         return result;

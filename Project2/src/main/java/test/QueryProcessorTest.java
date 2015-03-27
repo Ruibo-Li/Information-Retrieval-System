@@ -9,12 +9,12 @@ import java.util.*;
 public class QueryProcessorTest {
     public static void main(String[] args) throws Exception {
         QueryProcessor queryProcessor = new QueryProcessor("");
-        List<String> result = queryProcessor.getBusineesLeader("who created microsoft");
-        List<String> authorResult = queryProcessor.getBookAuthor("who created microsoft");
+        List<List<String>> result = queryProcessor.getBusinessLeader("who created microsoft");
+        List<List<String>> authorResult = queryProcessor.getBookAuthor("who created microsoft");
         result.addAll(authorResult);
-        Collections.sort(result);
+        //Collections.sort(result);
         //List<String> result = queryProcessor.getBookAuthor("Who Created Lord of the Rings?");
-        for(String sentence:result)
+        for(List<String> sentence:result)
             System.out.println(sentence);
     }
 }
