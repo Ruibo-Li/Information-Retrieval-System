@@ -24,7 +24,7 @@ public class Extractor {
         typeAttrMap.put("Actor", Arrays.asList("Films"));
         typeAttrMap.put("BusinessPerson", Arrays.asList("Leadership", "BoardMember", "Founded"));
         typeAttrMap.put("League", Arrays.asList("Name", "Championship","Sport", "Slogan", "OfficialWebsite", "Description", "Teams"));
-        typeAttrMap.put("SportsTeam", Arrays.asList("Name", "Sport", "Arena", "Championships", "Founded", "Leagues", "Location", "Coaches", "PlayersRoster"));
+        typeAttrMap.put("SportsTeam", Arrays.asList("Name", "Sport", "Arena", "Championships", "Founded", "Leagues", "Location", "Coaches", "PlayersRoster", "Description"));
         this.name = name;
     }
 
@@ -405,9 +405,11 @@ public class Extractor {
         //Founded
         getHelperValue(map, jsonObject, "/sports/sports_team/founded", "Founded");
         //Leagues
-        getHelperDeep(map, jsonObject, "/sports/sports_team/league", "/sports/sports_team/league", "Leagues");
+        getHelperDeep(map, jsonObject, "/sports/sports_team/league", "/sports/sports_league_participation/league", "Leagues");
         //Location
         getHelperText(map, jsonObject, "/sports/sports_team/location", "Location");
+        //description
+        getHelperValue(map, jsonObject, "/common/topic/description", "Description");
         //Coaches
         getCoaches(map, jsonObject);
         //PlayersRoster
