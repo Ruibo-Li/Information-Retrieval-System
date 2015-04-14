@@ -10,7 +10,7 @@ import java.util.List;
  * This class contains test cases for FrequentItems.class
  */
 public class FrequentItemsTest {
-    public static void main(String[] args) throws IOException{
+/*    public static void main(String[] args) throws IOException{
         kCombinationTest();
         findFrequentPairsTest();
         findFrequentAllTest();
@@ -41,5 +41,5 @@ public class FrequentItemsTest {
         fi.setThreshold(0.2);
         fi.findFrequentPairs().findFrequentAll();
         fi.print();
-    }
+    }*/
 }

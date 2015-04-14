@@ -14,15 +14,19 @@ public class FrequentItems {
     private int bucketSize=0;
     private int itemSize=0;
     private double threshold=0.7;//threshold to be frequent items.
-    private List<ItemGroup> frequentList=new ArrayList<ItemGroup>();
+    private List<ItemSet> frequentList=new ArrayList<ItemSet>();
 
-    public FrequentItems(String inputPath, String delimeter, int threshold){
+    public FrequentItems(String inputPath, String delimeter, int threshold) throws IOException {
+        WordID.load(inputPath);
         this.inputPath=inputPath;
         this.delimeter=delimeter;
         this.threshold=threshold;
+        this.itemSize = WordID.size;
     }
-    public FrequentItems(String inputPath){
+    public FrequentItems(String inputPath) throws IOException {
+        WordID.load(inputPath);
         this.inputPath=inputPath;
+        this.itemSize = WordID.size;
     }
     public void setOutputPath(String path){
         outputPath=path;
@@ -57,16 +61,8 @@ public class FrequentItems {
      */
     public FrequentItems findFrequentPairs() throws IOException {
         File infile = new File(inputPath);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(infile)));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(infile)));
 
-        String header = reader.readLine();
-        String[] headersplit = header.split(delimeter);
-        for(String h:headersplit){
-            if(h.length()>0)
-                itemSize++;
-        }
         //C1 contains all items and its frequency in the input file.
         int[] C1 = new int[itemSize];
         for(int i=0;i<C1.length;++i)    C1[i]=0;
@@ -76,10 +72,10 @@ public class FrequentItems {
         while(bucket!=null){
             bucketSize++;
             bucketSplit=bucket.split(delimeter);
-            for(int i=1;i<bucketSplit.length;++i){
-                if(bucketSplit[i].matches("[0-9]+")){//is a number
-                    if(Integer.parseInt(bucketSplit[i])<C1.length)
-                        C1[Integer.parseInt(bucketSplit[i])]++;
+            for(int i=0;i<bucketSplit.length;++i){
+                int id = WordID.getId(bucketSplit[i]);
+                if(id >= 0 || id < C1.length){//is a number
+                    C1[id]++;
                 }
             }
             bucket=reader.readLine();
@@ -88,45 +84,49 @@ public class FrequentItems {
         //L1 filters those items in C1 whose frequency is too low to be a part of frequent pair.
         List<Integer> L1 = new ArrayList<Integer>();
         for(int i=0;i<itemSize;++i){
-            if(C1[i]>thresholdNum)  L1.add(i);
+            if(C1[i]>thresholdNum)  {
+                L1.add(i);
+                ItemSet ig1 = new ItemSet(i);
+                ig1.occurrence = C1[i];
+                frequentList.add(ig1);
+            }
         }
+
         //C2 is the set of pair candidates that could be frequent pairs
-        HashMap<ItemGroup,Integer> C2 = new HashMap<ItemGroup,Integer>(L1.size()*L1.size());
+        HashMap<ItemSet,Integer> C2 = new HashMap<ItemSet,Integer>(L1.size()*L1.size());
         for(int i=0;i<L1.size();++i){
             for(int j=i+1;j<L1.size();++j){
-                List<Integer> lst = new ArrayList<Integer>();
-                ItemGroup ig=null;
+                ItemSet ig;
                 if(L1.get(i)<L1.get(j))
-                    ig=new ItemGroup(L1.get(i),L1.get(j));
+                    ig=new ItemSet(L1.get(i),L1.get(j));
                 else
-                    ig=new ItemGroup(L1.get(j),L1.get(i));
+                    ig=new ItemSet(L1.get(j),L1.get(i));
                 C2.put(ig, ig.occurrence);
             }
         }
         reader.close();
         //Read file second time to find real frequent pairs from
         //pair candidates C2.
-        reader = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(infile)));
-        bucket = reader.readLine();//read header that we don't use.
+        reader = new BufferedReader(new InputStreamReader(new FileInputStream(infile)));
 
-        while(bucket!=null){
+        while(true){
             //read each line
             bucket=reader.readLine();
             if(bucket==null)    break;
             bucketSplit = bucket.split(delimeter);
-            for(int i=1;i<bucketSplit.length;++i){
-                if(!bucketSplit[i].matches("[0-9]+"))
-                    continue;
+            for(int i=0;i<bucketSplit.length;++i){
+                int id = WordID.getId(bucketSplit[i]);
+                if(id<0) continue;
                 for(int j=i+1;j<bucketSplit.length;++j){
                     //every possible pairs in each line.
                     //if it appears in C2, count that pair in C2
-                    if(!bucketSplit[j].matches("[0-9]+"))
-                        continue;
-                    ItemGroup ig = new ItemGroup(
-                            Integer.parseInt(bucketSplit[i]),
-                            Integer.parseInt(bucketSplit[j]));
+                    int id2 = WordID.getId(bucketSplit[j]);
+                    if(id2<0) continue;
+                    List<Integer> bucktlst = new ArrayList<Integer>();
+                    bucktlst.add(id);
+                    bucktlst.add(id2);
+                    Collections.sort(bucktlst);
+                    ItemSet ig = new ItemSet(bucktlst);
                     if(C2.containsKey(ig)){//CONTAINS HAS BUG HERE!!! WE SHOULD USE OTHER DS!!
                         C2.put(ig,C2.get(ig)+1);
                     }
@@ -135,7 +135,7 @@ public class FrequentItems {
         }
 
         //find true frequent pairs from C2
-        for(ItemGroup ig:C2.keySet()){
+        for(ItemSet ig:C2.keySet()){
             int occ=C2.get(ig);
             if(occ>thresholdNum){
                 ig.occurrence=occ;
@@ -155,7 +155,7 @@ public class FrequentItems {
         int k=3;//start with finding 3-frequent items.
         if(frequentList.isEmpty())  return 0;//no action if empty
         while(true) {
-            HashSet<ItemGroup> km1Set = new HashSet<ItemGroup>(frequentList);
+            HashSet<ItemSet> km1Set = new HashSet<ItemSet>(frequentList);
             int begin = frequentList.size() - 1;
             //possible items in frequent k-items sets.
             Set<Integer> candidateItems = new HashSet<Integer>();
@@ -166,7 +166,7 @@ public class FrequentItems {
                 } else break;
             }
             begin++;//now begin is the first index of (k-1)-set
-            HashMap<ItemGroup, Integer> Ck = new HashMap<ItemGroup, Integer>();
+            HashMap<ItemSet, Integer> Ck = new HashMap<ItemSet, Integer>();
             //Construct Ck set which is the set of possible frequent k-items.
             for (int i = begin; i < frequentList.size(); ++i) {
                 //km1Tuple is frequent (k-1)-items that we have known.
@@ -189,13 +189,13 @@ public class FrequentItems {
                         }
                     }
                     if(kTuple==null)    continue;
-                    ItemGroup ig = new ItemGroup(kTuple);
+                    ItemSet ig = new ItemSet(kTuple);
                     boolean isC = true;
                     //if kTuple is frequent, at least every subset of kTuple is frequent
                     for(int m=0;m<ig.itemList.size();++m){
                         List<Integer> testL = new ArrayList<Integer>(ig.itemList);
                         testL.remove(m);
-                        ItemGroup testG = new ItemGroup(testL);
+                        ItemSet testG = new ItemSet(testL);
                         if(!km1Set.contains(testG)){
                             isC=false;
                             break;
@@ -205,18 +205,15 @@ public class FrequentItems {
                 }
             }
             File infile = new File(inputPath);
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(infile)));
-            reader.readLine();//skip the head line.
-            String bucket = reader.readLine();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(infile)));
+            String bucket = "";// reader.readLine();
             String[] bucketSplit;
             while (bucket != null) {
                 bucketSplit = bucket.split(delimeter);
-                List<List<Integer>> kComb = kCombination(bucketSplit, 1, bucketSplit.length - 1, k);
+                List<List<Integer>> kComb = kCombination(bucketSplit, 0, bucketSplit.length - 1, k);
                 //count in Ck
                 for (List<Integer> kelement : kComb) {
-                    ItemGroup tmp = new ItemGroup(kelement);
+                    ItemSet tmp = new ItemSet(kelement);
                     if (Ck.containsKey(tmp))
                         Ck.put(tmp, Ck.get(tmp) + 1);
                 }
@@ -225,7 +222,7 @@ public class FrequentItems {
             reader.close();
             int thresholdNum = (int) (bucketSize * threshold); //should strictly bigger than this.
             int count = 0;
-            for (ItemGroup g : Ck.keySet()) {
+            for (ItemSet g : Ck.keySet()) {
                 int occ = Ck.get(g);
                 if (occ > thresholdNum) {
                     count++;
@@ -251,10 +248,11 @@ public class FrequentItems {
         //remember to judge if the element is a number.
         List<Integer> items = new ArrayList<Integer>();
         for(int i=start;i<=end;++i){
-            if(!bucketSplit[i].matches("[0-9]+"))
-                continue;
-            items.add(Integer.valueOf(bucketSplit[i]));
+            int id = WordID.getId(bucketSplit[i]);
+            if(id < 0) continue;
+            items.add(id);
         }
+        Collections.sort(items);
         Set<List<Integer>> combSet1 = new HashSet<List<Integer>>();
         Set<List<Integer>> combSet2 = new HashSet<List<Integer>>();
         for(int b:items){
@@ -287,9 +285,9 @@ public class FrequentItems {
      * Every line is the list of frequent items followed by percentage.
      */
     public void print(){
-        for(ItemGroup ig:frequentList){
+        for(ItemSet ig:frequentList){
             for(int item:ig.itemList)
-                System.out.print(item+",");
+                System.out.print(WordID.getWord(item)+",");
             int perc = ig.occurrence*100/bucketSize;
             System.out.print(perc+"%\n");
         }
@@ -300,9 +298,9 @@ public class FrequentItems {
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(outfile)));
-        for(ItemGroup ig:frequentList){
+        for(ItemSet ig:frequentList){
             for(int item:ig.itemList)
-                writer.write(item+",");
+                writer.write(WordID.getWord(item)+",");
             int perc = ig.occurrence*100/bucketSize;
             writer.write(perc+"%\n");
         }
