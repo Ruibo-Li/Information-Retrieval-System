@@ -71,7 +71,7 @@ public class FrequentItems {
         bucket=reader.readLine();
         while(bucket!=null){
             bucketSize++;
-            bucketSplit=bucket.split(delimeter);
+            bucketSplit = WordID.split(bucket); //bucket.split(delimeter);
             for(int i=0;i<bucketSplit.length;++i){
                 int id = WordID.getId(bucketSplit[i]);
                 if(id >= 0 || id < C1.length){//is a number
@@ -113,7 +113,7 @@ public class FrequentItems {
             //read each line
             bucket=reader.readLine();
             if(bucket==null)    break;
-            bucketSplit = bucket.split(delimeter);
+            bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
             for(int i=0;i<bucketSplit.length;++i){
                 int id = WordID.getId(bucketSplit[i]);
                 if(id<0) continue;
@@ -209,7 +209,7 @@ public class FrequentItems {
             String bucket = "";// reader.readLine();
             String[] bucketSplit;
             while (bucket != null) {
-                bucketSplit = bucket.split(delimeter);
+                bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
                 List<List<Integer>> kComb = kCombination(bucketSplit, 0, bucketSplit.length - 1, k);
                 //count in Ck
                 for (List<Integer> kelement : kComb) {
@@ -286,10 +286,18 @@ public class FrequentItems {
      */
     public void print(){
         for(ItemSet ig:frequentList){
-            for(int item:ig.itemList)
-                System.out.print(WordID.getWord(item)+",");
+            System.out.print("[");
+            for(int i=0; i<ig.itemList.size(); ++i) {
+                int item = ig.itemList.get(i);
+                System.out.print(WordID.getWord(item));
+                if(i<ig.itemList.size()-1){
+                    System.out.print("][");
+                } else {
+                    System.out.print("]");
+                }
+            }
             int perc = ig.occurrence*100/bucketSize;
-            System.out.print(perc+"%\n");
+            System.out.print("\t"+perc+"%\n");
         }
     }
 
