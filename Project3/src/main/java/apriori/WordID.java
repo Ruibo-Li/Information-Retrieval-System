@@ -61,6 +61,9 @@ public class WordID {
                 sb.append(str.charAt(i));
             }
         }
+        if(!isQuote && sb.length()>0){
+            strlst.add(sb.toString());
+        }
         String[] rst = new String[strlst.size()];
         for(int i=0; i<strlst.size(); ++i){
             rst[i] = strlst.get(i);

@@ -28,12 +28,13 @@ public class Main {
         if(delimeter!=null) fi.setDelimeter(delimeter);
         if(threshold>0) fi.setThreshold(threshold);
         fi.findFrequentPairs().findFrequentAll();
+        fi.findRules();
         fi.printfile();
         System.out.print("Result has outputted to file. Do you want to display results on screen?\n" +
                 "Y: Display\nN: No and quit for safe.\n");
         Scanner console = new Scanner(System.in);
         String in = console.nextLine();
-        if(in.equals("Y")||in.equals("y"))  fi.print();
+        if(!in.equals("N")&&!in.equals("n"))  fi.print();
         System.out.println("Program safely terminated! Thanks!");
     }
 }

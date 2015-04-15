@@ -1,13 +1,14 @@
 package apriori;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Created by szeyiu on 10/1/14.
  * This class represents the element of frequent items.
  */
-public class ItemSet {
+public class ItemSet implements Comparable<ItemSet>{
     public List<Integer> itemList;//frequent items, sorted.
     public int occurrence=0;//times of occurrence
     public ItemSet(){
@@ -38,5 +39,10 @@ public class ItemSet {
     @Override
     public int hashCode(){
         return itemList.hashCode();
+    }
+
+    @Override
+    public int compareTo(ItemSet other){
+        return this.occurrence - other.occurrence;
     }
 }

@@ -14,6 +14,7 @@ public class FrequentItems {
     private int bucketSize=0;
     private int itemSize=0;
     private double threshold=0.7;//threshold to be frequent items.
+    private double minConf = 0.7;//minimum confidence
     private List<ItemSet> frequentList=new ArrayList<ItemSet>();
 
     public FrequentItems(String inputPath, String delimeter, int threshold) throws IOException {
@@ -52,7 +53,9 @@ public class FrequentItems {
     public double getThreshold(){
         return threshold;
     }
-
+    public void setMinConf(double minConf){
+        this.minConf = minConf;
+    }
     /**
      * main function to find frequent items
      * using A-priori algorithm.
@@ -80,11 +83,11 @@ public class FrequentItems {
             }
             bucket=reader.readLine();
         }
-        int thresholdNum = (int)(bucketSize * threshold); //should strictly bigger than this.
+        double thresholdNum = bucketSize * threshold; //should strictly bigger than this.
         //L1 filters those items in C1 whose frequency is too low to be a part of frequent pair.
         List<Integer> L1 = new ArrayList<Integer>();
         for(int i=0;i<itemSize;++i){
-            if(C1[i]>thresholdNum)  {
+            if(C1[i]>=thresholdNum)  {
                 L1.add(i);
                 ItemSet ig1 = new ItemSet(i);
                 ig1.occurrence = C1[i];
@@ -137,7 +140,7 @@ public class FrequentItems {
         //find true frequent pairs from C2
         for(ItemSet ig:C2.keySet()){
             int occ=C2.get(ig);
-            if(occ>thresholdNum){
+            if(occ>=thresholdNum){
                 ig.occurrence=occ;
                 frequentList.add(ig);
             }
@@ -220,11 +223,11 @@ public class FrequentItems {
                 bucket = reader.readLine();
             }
             reader.close();
-            int thresholdNum = (int) (bucketSize * threshold); //should strictly bigger than this.
+            double thresholdNum =  bucketSize * threshold; //should strictly bigger than this.
             int count = 0;
             for (ItemSet g : Ck.keySet()) {
                 int occ = Ck.get(g);
-                if (occ > thresholdNum) {
+                if (occ >= thresholdNum) {
                     count++;
                     g.occurrence = occ;
                     frequentList.add(g);
@@ -280,11 +283,67 @@ public class FrequentItems {
         return new ArrayList<List<Integer>>(combSet1);
     }
 
+    private void sortResult(){
+        Collections.sort(frequentList,Collections.reverseOrder());
+    }
+
+    class Rule implements Comparable<Rule>{
+        String rule;
+        double conf;
+        public Rule(String rule,double conf){
+            this.rule = rule;
+            this.conf = conf;
+        }
+        @Override
+        public int compareTo(Rule other){
+            if(this.conf - other.conf > 0){
+                return 1;
+            } else if(this.conf - other.conf < 0){
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+    private List<Rule> ruleList;
+
+    public void findRules(){
+        ruleList = new ArrayList<Rule>();
+        for(ItemSet is: frequentList){
+            if(is.itemList.size()>1) continue;
+            ItemSet singleSet = is;
+            int singleId = singleSet.itemList.get(0);
+            for(ItemSet leftSet: frequentList){
+                if(leftSet.itemList.contains(singleId)) continue;
+                List<Integer> leftRightList = new ArrayList<Integer>(leftSet.itemList);
+                leftRightList.add(singleId);
+                Collections.sort(leftRightList);
+                for(ItemSet lrSet: frequentList){
+                    if(!lrSet.itemList.equals(leftRightList)) continue;
+                    double conf = 1.0*lrSet.occurrence/leftSet.occurrence;
+                    if(conf>=minConf){
+                        StringBuilder sb = new StringBuilder();
+                        for(int leftId : leftSet.itemList){
+                            String leftStr = WordID.getWord(leftId);
+                            sb.append(leftStr+",,, ");
+                        }
+                        sb.append("=> ");
+                        sb.append(WordID.getWord(singleId)+"\t"+ conf*100 + "%");
+                        ruleList.add(new Rule(sb.toString(), conf));
+                    }
+                }
+            }
+        }
+        Collections.sort(ruleList,Collections.reverseOrder());
+    }
+
+
     /**
      * print frequent items on screen.
      * Every line is the list of frequent items followed by percentage.
      */
     public void print(){
+        sortResult();
         for(ItemSet ig:frequentList){
             System.out.print("[");
             for(int i=0; i<ig.itemList.size(); ++i) {
@@ -299,9 +358,13 @@ public class FrequentItems {
             int perc = ig.occurrence*100/bucketSize;
             System.out.print("\t"+perc+"%\n");
         }
+        System.out.println("************************RULES************************");
+        for(Rule r: ruleList){
+            System.out.println(r.rule);
+        }
     }
 
-    public void printfile() throws IOException{
+    public void printfile() throws IOException {
         File outfile = new File(outputPath);
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(
@@ -311,6 +374,10 @@ public class FrequentItems {
                 writer.write(WordID.getWord(item)+",");
             int perc = ig.occurrence*100/bucketSize;
             writer.write(perc+"%\n");
+        }
+        writer.write("************************RULES************************\n");
+        for(Rule r: ruleList){
+            writer.write(r.rule + "\n");
         }
         writer.flush();
         writer.close();
