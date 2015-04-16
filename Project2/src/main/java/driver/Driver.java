@@ -117,6 +117,11 @@ public class Driver {
                 pritnTableItem(strl, line);
         }
         else {
+            if(result.size()==0){
+                System.out.println("No result!");
+                return;
+            }
+
             for(int i=0;i<result.size();i++){
                 List<String> cur = result.get(i);
                 StringBuffer sb = new StringBuffer();

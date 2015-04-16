@@ -290,9 +290,11 @@ public class FrequentItems {
     class Rule implements Comparable<Rule>{
         String rule;
         double conf;
-        public Rule(String rule,double conf){
+        int supp;
+        public Rule(String rule,double conf,int supp){
             this.rule = rule;
             this.conf = conf;
+            this.supp = supp;
         }
         @Override
         public int compareTo(Rule other){
@@ -321,15 +323,23 @@ public class FrequentItems {
                 for(ItemSet lrSet: frequentList){
                     if(!lrSet.itemList.equals(leftRightList)) continue;
                     double conf = 1.0*lrSet.occurrence/leftSet.occurrence;
+                    int supp = lrSet.occurrence*100/bucketSize;
                     if(conf>=minConf){
                         StringBuilder sb = new StringBuilder();
-                        for(int leftId : leftSet.itemList){
+                        sb.append('[');
+                        for(int i=0;i<leftSet.itemList.size();i++) {
+                            int leftId = leftSet.itemList.get(i);
                             String leftStr = WordID.getWord(leftId);
-                            sb.append(leftStr+",,, ");
+                            sb.append(leftStr);
+                            if(i<leftSet.itemList.size()-1)
+                                sb.append(", ");
+                            else
+                                sb.append(']');
+                            //sb.append(leftStr+",,, ");
                         }
                         sb.append("=> ");
-                        sb.append(WordID.getWord(singleId)+"\t"+ conf*100 + "%");
-                        ruleList.add(new Rule(sb.toString(), conf));
+                        sb.append('['+WordID.getWord(singleId)+"], (Conf="+ conf*100 + "%, Supp=" + supp + "%)");
+                        ruleList.add(new Rule(sb.toString(), conf, supp));
                     }
                 }
             }
@@ -350,13 +360,13 @@ public class FrequentItems {
                 int item = ig.itemList.get(i);
                 System.out.print(WordID.getWord(item));
                 if(i<ig.itemList.size()-1){
-                    System.out.print("][");
+                    System.out.print(", ");
                 } else {
                     System.out.print("]");
                 }
             }
             int perc = ig.occurrence*100/bucketSize;
-            System.out.print("\t"+perc+"%\n");
+            System.out.print(", "+perc+"%\n");
         }
         System.out.println("************************RULES************************");
         for(Rule r: ruleList){
