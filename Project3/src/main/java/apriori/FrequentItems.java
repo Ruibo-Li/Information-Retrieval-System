@@ -77,8 +77,11 @@ public class FrequentItems {
             bucketSplit = WordID.split(bucket); //bucket.split(delimeter);
             for(int i=0;i<bucketSplit.length;++i){
                 int id = WordID.getId(bucketSplit[i]);
-                if(id >= 0 || id < C1.length){//is a number
+                if(id >= 0 && id < C1.length){//is a number
+                    //System.out.println("C1[id], id="+id);
                     C1[id]++;
+                } else {
+                    System.out.println("Warning OOV: "+bucket);
                 }
             }
             bucket=reader.readLine();
