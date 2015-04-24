@@ -2,6 +2,7 @@ package apriori;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by szeyiu on 10/1/14.
@@ -161,6 +162,7 @@ public class FrequentItems {
         int k=3;//start with finding 3-frequent items.
         if(frequentList.isEmpty())  return 0;//no action if empty
         while(true) {
+            System.out.println("K="+k);
             HashSet<ItemSet> km1Set = new HashSet<ItemSet>(frequentList);
             int begin = frequentList.size() - 1;
             //possible items in frequent k-items sets.
@@ -178,6 +180,7 @@ public class FrequentItems {
                 //km1Tuple is frequent (k-1)-items that we have known.
                 List<Integer> km1Tuple = new ArrayList<Integer>(frequentList.get(i).itemList);
                 //we are going to construct frequent k-item candidate from (k-1)-item.
+                //System.out.println("Build from Lk-1:"+km1Tuple);
                 List<Integer> kTuple;
                 for (int item : candidateItems) {
                     kTuple = null;
@@ -210,18 +213,32 @@ public class FrequentItems {
                     if(isC) Ck.put(ig, ig.occurrence);
                 }
             }
+            //System.out.println("Filter by k-comb subset");
             File infile = new File(inputPath);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(infile)));
             String bucket = "";// reader.readLine();
             String[] bucketSplit;
             while (bucket != null) {
-                bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
+/*                bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
                 List<List<Integer>> kComb = kCombination(bucketSplit, 0, bucketSplit.length - 1, k);
                 //count in Ck
                 for (List<Integer> kelement : kComb) {
                     ItemSet tmp = new ItemSet(kelement);
                     if (Ck.containsKey(tmp))
                         Ck.put(tmp, Ck.get(tmp) + 1);
+                }*/
+
+                bucketSplit = WordID.split(bucket);
+                List<Integer> row = new ArrayList<Integer>();
+                for(int j=0; j<bucketSplit.length; ++j){
+                    row.add(WordID.getId(bucketSplit[j]));
+                }
+                Collections.sort(row);
+                for(ItemSet ckis: Ck.keySet()){
+                    if(isSubset(ckis.itemList, row)){
+                        //System.out.println("Hit");
+                        Ck.put(ckis, Ck.get(ckis)+1);
+                    }
                 }
                 bucket = reader.readLine();
             }
@@ -236,9 +253,27 @@ public class FrequentItems {
                     frequentList.add(g);
                 }
             }
-            if (count < k + 1) return k;
+            if (count < k + 1) {
+                System.out.println("Finish finding frequent sets");
+                return k;
+            }
             k++;
         }
+    }
+
+    private boolean isSubset(List<Integer> sub, List<Integer> set){
+        if(sub.size()>set.size()) return false;
+        for(int e : sub){
+            boolean eq = false;
+            for(int ee: set){
+                if(ee==e){
+                    eq=true;
+                    break;
+                }
+            }
+            if(!eq) return false;
+        }
+        return true;
     }
 
     /**
@@ -313,6 +348,10 @@ public class FrequentItems {
     private List<Rule> ruleList;
 
     public void findRules(){
+        Map<ItemSet,ItemSet> frequentMap = new HashMap<ItemSet,ItemSet>();
+        for(ItemSet s : frequentList){
+            frequentMap.put(s,s);
+        }
         ruleList = new ArrayList<Rule>();
         for(ItemSet is: frequentList){
             if(is.itemList.size()>1) continue;
@@ -323,8 +362,10 @@ public class FrequentItems {
                 List<Integer> leftRightList = new ArrayList<Integer>(leftSet.itemList);
                 leftRightList.add(singleId);
                 Collections.sort(leftRightList);
-                for(ItemSet lrSet: frequentList){
-                    if(!lrSet.itemList.equals(leftRightList)) continue;
+                ItemSet tmp = new ItemSet(leftRightList);
+                if(frequentMap.containsKey(tmp)){
+                    ItemSet lrSet = frequentMap.get(tmp);
+                    //if(!lrSet.itemList.equals(leftRightList)) continue;
                     double conf = 1.0*lrSet.occurrence/leftSet.occurrence;
                     int supp = lrSet.occurrence*100/bucketSize;
                     if(conf>=minConf){
