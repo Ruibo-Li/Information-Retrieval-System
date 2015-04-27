@@ -382,7 +382,7 @@ public class FrequentItems {
                             //sb.append(leftStr+",,, ");
                         }
                         sb.append("=> ");
-                        sb.append('['+WordID.getWord(singleId)+"], (Conf="+ conf*100 + "%, Supp=" + supp + "%)");
+                        sb.append('['+WordID.getWord(singleId)+"] (Conf="+ conf*100 + "%, Supp=" + supp + "%)");
                         ruleList.add(new Rule(sb.toString(), conf, supp));
                     }
                 }
@@ -419,15 +419,23 @@ public class FrequentItems {
     }
 
     public void printfile() throws IOException {
+        sortResult();
         File outfile = new File(outputPath);
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(outfile)));
         for(ItemSet ig:frequentList){
-            for(int item:ig.itemList)
-                writer.write(WordID.getWord(item)+",");
+            writer.write("[");
+            for(int i=0; i<ig.itemList.size(); ++i) {
+                writer.write(WordID.getWord(ig.itemList.get(i)));
+                if(i<ig.itemList.size()-1){
+                    writer.write(", ");
+                } else {
+                    writer.write("], ");
+                }
+            }
             int perc = ig.occurrence*100/bucketSize;
-            writer.write(perc+"%\n");
+            writer.write(perc + "%\n");
         }
         writer.write("************************RULES************************\n");
         for(Rule r: ruleList){

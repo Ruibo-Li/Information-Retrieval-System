@@ -7,8 +7,8 @@ import java.io.*;
  */
 public class Filter {
     public static void main(String[] args) throws IOException {
-        File fin = new File("out.txt");
-        File fout = new File("out_filtered.txt");
+        File fin = new File("output.txt");
+        File fout = new File("out_filtered_427705.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fin)));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fout)));
         String line = reader.readLine();
