@@ -6,23 +6,22 @@ b.
 Files:
 rl2733-proj3
     - README.txt
+    - example-run.txt
+    - INTEGRATED-DATASET.csv
     - Project3
         - RUN.jar
         - pom.xml
-        - project1.iml
+        - project3.iml
         - src
             - main
-                - resourses
-                    - StopWords.txt
                 -java
                     - Main.java
-                    - service
-                        - Bing.java
-                    - IRModel
-                        - Naive.java
-                        - NaiveTunned.java
-                    - pojo
-                        - SearchResult.java
+                    - apriori
+                        - FrequentItems.java
+                        - ItemSet.java
+                        - WordID.java
+                    - postProcess
+                        - Filter.java
 
 c.
 (a) 
