@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by szeyiu on 10/1/14.
+ * Created by szeyiu on 4/24/15.
  * This class contains test cases for FrequentItems.class
  */
 public class FrequentItemsTest {

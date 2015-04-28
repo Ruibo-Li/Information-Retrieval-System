@@ -8,14 +8,14 @@ import java.io.*;
 public class Filter {
     public static void main(String[] args) throws IOException {
         File fin = new File("output.txt");
-        File fout = new File("out_filtered_427705.txt");
+        File fout = new File("out_filtered_4271026.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fin)));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fout)));
         String line = reader.readLine();
         while(line!=null){
-            if(line.matches(".*=>.*\\[[a-zA-z]+.*\\].*") &&
+            if(line.matches(".*=>.*\\[[a-zA-z]+.*\\].*") /*&&
                     (line.contains("Auto")||line.contains("Taxis")||line.contains("Commercial")||
-                            line.contains("Bus")||line.contains("Truck")||line.contains("Other"))){
+                            line.contains("Bus")||line.contains("Truck")||line.contains("Other"))*/){
                 writer.write(line+"\n");
             }
             line = reader.readLine();

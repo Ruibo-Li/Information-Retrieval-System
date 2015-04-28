@@ -2,26 +2,25 @@ package apriori;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.SynchronousQueue;
 
 /**
- * Created by szeyiu on 10/1/14.
+ * Created by szeyiu on 4/24/15.
  */
 public class FrequentItems {
     //Assumption: Frequent item groups can be stored in memory.
     private String inputPath;
     private String outputPath="out.txt";
-    private String delimeter=",";
+    private String delimiter =",";
     private int bucketSize=0;
     private int itemSize=0;
     private double threshold=0.7;//threshold to be frequent items.
     private double minConf = 0.7;//minimum confidence
     private List<ItemSet> frequentList=new ArrayList<ItemSet>();
 
-    public FrequentItems(String inputPath, String delimeter, int threshold) throws IOException {
+    public FrequentItems(String inputPath, String delimiter, int threshold) throws IOException {
         WordID.load(inputPath);
         this.inputPath=inputPath;
-        this.delimeter=delimeter;
+        this.delimiter = delimiter;
         this.threshold=threshold;
         this.itemSize = WordID.size;
     }
@@ -36,11 +35,11 @@ public class FrequentItems {
     public String getOutputPath() {
         return outputPath;
     }
-    public void setDelimeter(String delimeter){
-        this.delimeter=delimeter;
+    public void setDelimiter(String delimiter){
+        this.delimiter = delimiter;
     }
-    public String getDelimeter(){
-        return delimeter;
+    public String getDelimiter(){
+        return delimiter;
     }
     public int bucketSize(){
         return bucketSize;
@@ -75,7 +74,7 @@ public class FrequentItems {
         bucket=reader.readLine();
         while(bucket!=null){
             bucketSize++;
-            bucketSplit = WordID.split(bucket); //bucket.split(delimeter);
+            bucketSplit = WordID.split(bucket); //bucket.split(delimiter);
             for(int i=0;i<bucketSplit.length;++i){
                 int id = WordID.getId(bucketSplit[i]);
                 if(id >= 0 && id < C1.length){//is a number
@@ -120,7 +119,7 @@ public class FrequentItems {
             //read each line
             bucket=reader.readLine();
             if(bucket==null)    break;
-            bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
+            bucketSplit = WordID.split(bucket);//bucket.split(delimiter);
             for(int i=0;i<bucketSplit.length;++i){
                 int id = WordID.getId(bucketSplit[i]);
                 if(id<0) continue;
@@ -219,15 +218,6 @@ public class FrequentItems {
             String bucket = "";// reader.readLine();
             String[] bucketSplit;
             while (bucket != null) {
-/*                bucketSplit = WordID.split(bucket);//bucket.split(delimeter);
-                List<List<Integer>> kComb = kCombination(bucketSplit, 0, bucketSplit.length - 1, k);
-                //count in Ck
-                for (List<Integer> kelement : kComb) {
-                    ItemSet tmp = new ItemSet(kelement);
-                    if (Ck.containsKey(tmp))
-                        Ck.put(tmp, Ck.get(tmp) + 1);
-                }*/
-
                 bucketSplit = WordID.split(bucket);
                 List<Integer> row = new ArrayList<Integer>();
                 for(int j=0; j<bucketSplit.length; ++j){
@@ -274,51 +264,6 @@ public class FrequentItems {
             if(!eq) return false;
         }
         return true;
-    }
-
-    /**
-     * This function returns all k-combinations of elements in bucketSplit
-     * Every combination is in an ordered list.
-     * @param bucketSplit
-     * @param start
-     * @param end
-     * @param k
-     * @return
-     */
-    public List<List<Integer>> kCombination(String[] bucketSplit, int start, int end, int k){
-        //remember to judge if the element is a number.
-        List<Integer> items = new ArrayList<Integer>();
-        for(int i=start;i<=end;++i){
-            int id = WordID.getId(bucketSplit[i]);
-            if(id < 0) continue;
-            items.add(id);
-        }
-        Collections.sort(items);
-        Set<List<Integer>> combSet1 = new HashSet<List<Integer>>();
-        Set<List<Integer>> combSet2 = new HashSet<List<Integer>>();
-        for(int b:items){
-            List<Integer> l = new ArrayList<Integer>();
-            l.add(b);
-            combSet1.add(l);
-        }
-        for(int i=1;i<k;++i){
-            for(List<Integer> t:combSet1){
-                for(int b:items){
-                    for(int j=0;j<t.size();++j){
-                        if(b==t.get(j)) break;
-                        if(b<t.get(j)){
-                            List<Integer> tt = new ArrayList<Integer>(t);
-                            tt.add(j,b);
-                            combSet2.add(tt);
-                            break;
-                        }
-                    }
-                }
-            }
-            combSet1=combSet2;
-            combSet2 = new HashSet<List<Integer>>();
-        }
-        return new ArrayList<List<Integer>>(combSet1);
     }
 
     private void sortResult(){

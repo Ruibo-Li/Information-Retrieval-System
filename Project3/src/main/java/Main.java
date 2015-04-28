@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         if(args.length!=3){
-            throw new Error("Error: need at least two args: inputfile!");
+            throw new Error("Error: need at least 3 args: csvFile minSupp minConf");
         }
         String inputfile = args[0];
         String outputfile = "output.txt";

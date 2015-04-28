@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Created by szeyiu on 10/1/14.
+ * Created by szeyiu on 4/24/15.
  * This class represents the element of frequent items.
  */
 public class ItemSet implements Comparable<ItemSet>{
