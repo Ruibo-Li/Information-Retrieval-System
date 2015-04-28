@@ -53,6 +53,7 @@ We followed the algorithm mentioned in the paper, section 2.1, which consists of
 
 f.
 $ java -jar ./target/project3-1.0-SNAPSHOT-jar-with-dependencies.jar INTEGRATED-DATASET.csv 0.01 0.4
+
 We filtered the result in the output.txt to find those associate rules with the pattern: [trafficInfo, trafficInfo,...] => [vehicle type].
 And the following is the what we find after filtering:
 [4-0*50, 1-0*50, 2-1*50, 3-0*50]=> [School Bus] (Conf=82.05128205128204%, Supp=1%)
