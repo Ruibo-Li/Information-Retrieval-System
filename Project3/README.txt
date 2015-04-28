@@ -47,7 +47,7 @@ $ java -jar ./target/project3-1.0-SNAPSHOT-jar-with-dependencies.jar <csv file> 
 Note: "mvn clean package" will download necessary plugin and libraries, which might take *a few minutes*. After it says BUILD SUCCESS, jar project3-1.0-SNAPSHOT-jar-with-dependencies.jar will appear in the rl2733-proj1/Project3/target/ directory. Then run the jar file with parameters. If there is some problem when building the project, please use the back-up jar RUN.jar, which is generated in clic by ourselves.
 
 e.
-We followed the algorithm mentioned in the paper, section 2.1, which consists of join step and prune step. 
+We followed the algorithm mentioned in the paper, section 2.1, which consists of join step and prune step. Particularly, the apriori package in the source code contains 3 files: FrequentItems.java defines the main class for processing the frequent items and obtaining rules; ItemSet.java and WordID.java define the helper classes during the process. The postProcess package contains a file Filter.java, which specifies the method to filter the output.
 
 
 f.
