@@ -50,7 +50,7 @@ Besides Main.java, the source code of our implementation consists of 4 package: 
 (4)The services package contains the definition and implementation of class APIService. The class has methods to respectively deal with the problem of searching the query using Freebase Search API, getting results from Freebase Topic API and getting answer of the query from Freebase MQLRead API.
 
 f)
-Freebase API Key: AIzaSyBvdMWKakXD-QBUN4P7c0obKSfGlQQeoxY
+Freebase API Key:
 Requests per second per user: 10
 
 g)

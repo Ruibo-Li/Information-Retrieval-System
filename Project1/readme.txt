@@ -43,7 +43,6 @@ The algorithm we use for the query expansion is the Rocchio algorithm. The param
 
 f)
 Bing Search Account Key:
-OGwFXUbDNNw/U2hhi/vhjWdahU36dTuk5V2ZUis7+VU
 
 g)
 

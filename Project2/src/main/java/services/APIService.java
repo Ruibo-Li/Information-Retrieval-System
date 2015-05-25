@@ -19,8 +19,6 @@ import org.json.*;
 public class APIService {
     private static CloseableHttpClient httpClient;
     private static APIService apiService;
-    //private String APIKey = "AIzaSyBvdMWKakXD-QBUN4P7c0obKSfGlQQeoxY";
-    //private String APIKey = "AIzaSyB076DorHlXHT0vzTsdZ7jBivcdoBX88Gs";
     private String APIKey = "";
     private String QUERY_URL = "https://www.googleapis.com/freebase/v1/search";
     private String TOPIC_URL = "https://www.googleapis.com/freebase/v1/topic";
@@ -63,7 +61,7 @@ public class APIService {
         return apiService;
     }
     public static APIService getInstance(){
-        if(apiService==null) apiService = new APIService("AIzaSyBvdMWKakXD-QBUN4P7c0obKSfGlQQeoxY");
+        if(apiService==null) apiService = new APIService("");
         return apiService;
     }
 
